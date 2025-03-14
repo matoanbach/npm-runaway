@@ -1,20 +1,24 @@
-# Lets build this
+# Run the project locally
 
-## prequisite to run locally: node - v23.1.0 or v22^
+**note:** `prequisite` to run locally: node - v23.1.0 or v22^
 
-## download template down: - Shadcn template: https://github.com/salimi-my/shadcn-ui-sidebar?tab=readme-ov-file
+1. If you are joining, then download or clone this repo
+
+- If you are buidling from scratch, download template down: - `Shadcn template`: https://github.com/salimi-my/shadcn-ui-sidebar?tab=readme-ov-file
+
+2. Run
 
 ```bash
 npm install
 ```
 
-## Note if too many warnings and errors, run "npm install --force"
+**note:** if too many warnings and errors, run "npm install --force"
 
 ```bash
 npm run dev
 ```
 
-## Build a new release for the project
+3. Build a new release for the project
 
 ```bash
 rpm run build
@@ -24,7 +28,9 @@ rpm run build
 rpm run start
 ```
 
-## Dockerize the project
+# Run the project locally with Docker
+
+## 1. Dockerize the project
 
 ### Hold on, what's image and what's container
 
@@ -143,7 +149,7 @@ docker run -d -p [MACHINE_PORT]:[CONTAINER_PORT] [IMAGE NAME/ID]
 docker run -d -p 3000:3000 eda1c746beab
 ```
 
-### Remove a container
+### Remove an image
 
 ```bash
 docker rm [IMAGE_ID]
@@ -151,17 +157,69 @@ docker rm [IMAGE_ID]
 docker rm asdq1231asd
 ```
 
-## Cloud for docker (Lets try Amazon ECR this time)
+## 2. Push image to cloud (Lets try Amazon ECR this time)
 
 **Note:** Assume your team has ECR set up, so we just need to authenticate and then push the images from our local machine to Amazon ECR repository.
 
-### Set up credential keys -
+### Set up credential keys
 
 **Note:** If the repository is already there, we assume the secrets are set up for us already, so `ignore` this part.
 
-**Note:** Ask your team to give you this.
+**Note:** Ask your team to give you this set of secret keys.
 
-## Set up Github Actions
+## 3. Pull image from cloud
+
+1. Set up the AWS keys
+
+**Note:** ask your team for these keys
+
+```yaml
+[default]
+aws_access_key_id = ...
+aws_secret_access_key = ...
+
+[github]
+aws_access_key_id = ...
+aws_secret_access_key = ...
+```
+
+2.  Authenticate with AWS CLI
+
+- For Linux/MacOS, run:
+
+```bash
+aws ecr get-login-password --region us-east-2 | docker login --username AWS --password-stdin 160885278762.dkr.ecr.us-east-2.amazonaws.com
+```
+
+- For Windows, run:
+
+```bash
+aws ecr list-images --repository-name npm-runaway --region us-east-2
+```
+
+```bash
+# Output
+{
+    "imageIds": [
+        {
+            "imageDigest": "sha256:453554a1d3a2a0a08f3a98b28d9dd8190bcd1ecc024462562b4218130a6eabff",
+            "imageTag": "147027fcea98b822f010d90075bfc5d96e95e38a"
+        },
+        {
+            "imageDigest": "sha256:453554a1d3a2a0a08f3a98b28d9dd8190bcd1ecc024462562b4218130a6eabff",
+            "imageTag": "latest"
+        }
+    ]
+}
+```
+
+3. Pull the image down by running:
+
+```bash
+docker image pull 160885278762.dkr.ecr.us-east-2.amazonaws.com/npm-runaway:latest
+```
+
+## 4. Set up Github Actions
 
 ### Set up secret keys
 
@@ -179,7 +237,7 @@ AWS_ROOT_SECRET_ACCESS_KEY=...
 ### Github Actions config file
 
 ```yaml
-# put this this file in your_app/.github/deploy.yaml
+# put this this file in your_app/.github/workflows/deploy.yaml
 name: Deploy to production
 
 on:
