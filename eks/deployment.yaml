@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: deep-food-api-deployment
+  labels:
+    app: deep-food-api
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: deep-food-api
+  template:
+    metadata:
+      labels:
+        app: deep-food-api
+    spec:
+      containers:
+      - name: deep-food-api
+        image: 160885278762.dkr.ecr.us-east-2.amazonaws.com/npm-runaway:latest
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 3000

@@ -1,0 +1,12 @@
+apiVersion: eksctl.io/v1alpha5
+kind: ClusterConfig
+
+metadata:
+  name: npm-runaway 
+  region: us-east-2
+
+nodeGroups:
+  - name: deep-food
+    instanceType: t3.small
+    desiredCapacity: 1
+    volumeSize: 10

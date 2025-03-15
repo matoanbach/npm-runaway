@@ -219,6 +219,12 @@ aws ecr list-images --repository-name npm-runaway --region us-east-2
 docker image pull 160885278762.dkr.ecr.us-east-2.amazonaws.com/npm-runaway:latest
 ```
 
+3. Run the container
+
+```bash
+docker run -d -p 3000:3000 eda1c746beab 
+```
+
 ## 4. Set up Github Actions
 
 ### Set up secret keys
