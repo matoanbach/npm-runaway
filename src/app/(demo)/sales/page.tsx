@@ -5,7 +5,6 @@ import { ContentLayout } from "@/components/admin-panel/content-layout";
 import { Select, SelectContent, SelectItem, SelectLabel, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { SelectGroup } from "@radix-ui/react-select";
 import { Separator } from "@/components/ui/separator";
-import { LinearLineChartComponent } from "@/components/charts/linear-line-chart/linear-line-chart";
 import {
   Breadcrumb,
   BreadcrumbItem,
@@ -15,33 +14,84 @@ import {
   BreadcrumbSeparator
 } from "@/components/ui/breadcrumb";
 import { useState } from "react";
-import { Card } from "@/components/ui/card";
-import GanttChartComponent from "@/components/charts/gantt-chart/gantt-chart-component";
 import { StepAreaChartComponent } from "@/components/charts/step-area-chart/step-area-chart";
+import { LabelLineChartComponent } from "@/components/charts/label-line-chart/label-line-chart";
+import { MixedBarChartComponent } from "@/components/charts/mixed-bar-chart/mixed-bar-chart";
+import { Card } from "@/components/ui/card";
+import { ChartConfig } from "@/components/ui/chart";
+import { Activity } from "lucide-react";
 
+const chartColors = [
+  "hsl(210, 80%, 50%)",
+  "hsl(180, 70%, 40%)",
+  "hsl(330, 90%, 45%)",
+  "hsl(50, 70%, 45%)",
+  "hsl(90, 80%, 40%)",
+]
 
-type ProductExpiry = {
-  name: string;
-  expiryDescription: string;
-  dateRange: string;
-  duration: string;
-  progress: number;
+// SalesChart: used for the LabelLineChartComponent (e.g., monthly sales data)
+type SalesChart = {
+  chartName: string;               // Name of the chart (or product)
+  chartConfig: ChartConfig;        // Configuration for the sales chart (labels, colors, etc.)
+  data: { month: string; sales: number }[]; // Array of monthly sales data
 };
 
-type Batch = {
-  id: string;
-  label: string;
-  products: ProductExpiry[];
+// SellerChart: used for the MixedBarChartComponent (e.g., sales by seller)
+type SellerChart = {
+  chartName: string;               // Name of the chart (or product)
+  chartConfig: ChartConfig;        // Configuration for the seller chart (labels, colors, etc.)
+  data: { seller: string; sales: number, fill: string }[]; // Array of seller-specific sales data
 };
 
+// DiscountChart: used for the StepAreaChartComponent (e.g., discount periods)
+type DiscountChart = {
+  chartName: string;               // Name of the chart (or product)
+  chartConfig: ChartConfig;        // Configuration for the discount chart (labels, colors, icons, etc.)
+  data: { period: string; discount: number }[]; // Array of discount data (per period)
+};
+
+// Overall ProductChart: combines all datasets for one product.
 type ProductChart = {
-  chartName: string;
-  chartData: { month: string; product: number }[];
-  productInsights: string;
-  batches: Batch[];
+  product: string;                 // Product name
+  salesChart: SalesChart;        // Array of sales chart data (could be one element)
+  sellersChart: SellerChart;     // Array of seller chart data (could be one element)
+  discountChart: DiscountChart;  // Array of discount chart data (could be one element)
+  productInsights: string;         // Overall insights about the product
 };
 
 const productOptions = ["apple", "banana", "blueberry", "grapes", "pineapple"];
+const sellersOptions = ["Amazon", "Walmart", "Target", "BestBuy", "Costco"];
+const months = ["January", "February", "March", "April", "May", "June"];
+
+// Example Sales Chart Config for LabelLineChartComponent
+const salesChartConfig: ChartConfig = {
+  sales: {
+    label: "Sales",
+    color: chartColors[Math.floor(Math.random() * chartColors.length)],
+  },
+} satisfies ChartConfig
+
+// Example Seller Chart Config for MixedBarChartComponent
+const sellerChartConfig: ChartConfig = {
+  sales: {
+    label: "Units sold",
+  },
+  amazon: { label: "Amazon", color: "hsl(var(--chart-1))" },
+  walmart: { label: "Walmart", color: "hsl(var(--chart-2))" },
+  target: { label: "Target", color: "hsl(var(--chart-3))" },
+  bestbuy: { label: "BestBuy", color: "hsl(var(--chart-4))" },
+  costco: { label: "Costco", color: "hsl(var(--chart-5))" },
+} satisfies ChartConfig
+
+// Example Discount Chart Config for StepAreaChartComponent
+const discountChartConfig: ChartConfig = {
+  discount: {
+    label: "Discount",
+    color: chartColors[Math.floor(Math.random() * chartColors.length)],
+    icon: Activity,
+  },
+} satisfies ChartConfig
+
 
 const sampleProductCharts: ProductChart[] = productOptions.map((productName) => {
   // Define product-specific insights
@@ -66,76 +116,55 @@ const sampleProductCharts: ProductChart[] = productOptions.map((productName) => 
       insights = "No insights available.";
   }
 
-  // Generate chart data for months January to June
-  const months = ["January", "February", "March", "April", "May", "June"];
-  const chartData = months.map((month) => ({
+  // Sales data: generate monthly sales values
+  const salesData = months.map((month) => ({
     month,
-    product: Math.floor(Math.random() * 300), // Random stock level between 0 and 299
+    sales: Math.floor(Math.random() * 300),
+  }));
+  const salesChart: SalesChart = {
+    chartName: productName.charAt(0).toUpperCase() + productName.slice(1) + " Sales",
+    chartConfig: salesChartConfig,
+    data: salesData,
+  };
+
+  // Seller data: generate random sales for each seller
+  const sellerData = sellersOptions.map((seller) => ({
+    seller: seller.toLowerCase(),
+    sales: Math.floor(Math.random() * 500),
+    fill: "var(--color-" + seller.toLowerCase() +  ")"
   }));
 
-  // Define sample batches for expiry tracking with random progress values
-  const batches: Batch[] = [
-    {
-      id: "A",
-      label: "Batch A",
-      products: [
-        {
-          name: "Product 1",
-          expiryDescription: "Expires in 5 days",
-          dateRange: "Day 1 - Day 5",
-          duration: "5 days",
-          progress: Math.floor(Math.random() * 100),
-        },
-        {
-          name: "Product 2",
-          expiryDescription: "Expires in 6 days",
-          dateRange: "Day 2 - Day 7",
-          duration: "6 days",
-          progress: Math.floor(Math.random() * 100),
-        },
-      ],
-    },
-    {
-      id: "B",
-      label: "Batch B",
-      products: [
-        {
-          name: "Product 3",
-          expiryDescription: "Expires in 15 days",
-          dateRange: "Day 8 - Day 22",
-          duration: "15 days",
-          progress: Math.floor(Math.random() * 100),
-        },
-        {
-          name: "Product 4",
-          expiryDescription: "Expires in 14 days",
-          dateRange: "Day 7 - Day 20",
-          duration: "14 days",
-          progress: Math.floor(Math.random() * 100),
-        },
-      ],
-    },
-  ];
+  const sellerChart: SellerChart = {
+    chartName: productName.charAt(0).toUpperCase() + productName.slice(1) + " by Seller",
+    chartConfig: sellerChartConfig,
+    data: sellerData,
+  };
+
+  // Discount data: generate random discount percentage for each month
+  const discountData = months.map((month) => ({
+    period: month,
+    discount: Math.floor(Math.random() * 30), // discount percentage between 0 and 29%
+  }));
+  const discountChart: DiscountChart = {
+    chartName: productName.charAt(0).toUpperCase() + productName.slice(1) + " Discount",
+    chartConfig: discountChartConfig,
+    data: discountData,
+  };
 
   return {
-    chartName: productName.charAt(0).toUpperCase() + productName.slice(1),
-    chartData,
+    product: productName.charAt(0).toUpperCase() + productName.slice(1),
+    salesChart: salesChart,
+    sellersChart: sellerChart,
+    discountChart: discountChart,
     productInsights: insights,
-    batches,
   };
 });
 
-const chartColors = [
-  "hsl(210, 80%, 50%)",
-  "hsl(180, 70%, 40%)",
-  "hsl(330, 90%, 45%)",
-  "hsl(50, 70%, 45%)",
-  "hsl(90, 80%, 40%)",
-]
+
 
 export default function SalesPage() {
-  // State for the selected product chart; default to first product ("apple")
-  const [selectedProductChart, setSelectedProductChart] = useState(sampleProductCharts[0])
+  // Default to the first product chart (e.g., "Apple")
+  const [selectedProductChart, setSelectedProductChart] = useState<ProductChart>(sampleProductCharts[0])
 
   return (
     <ContentLayout title="Sales">
@@ -157,7 +186,7 @@ export default function SalesPage() {
             <BreadcrumbPage>Sales</BreadcrumbPage>
           </BreadcrumbItem>
           <BreadcrumbItem>
-            {/* Product select placed inside the breadcrumb list */}
+            {/* Product select placed in breadcrumb */}
             <Select
               onValueChange={(value) => {
                 const index = productOptions.indexOf(value)
@@ -185,34 +214,40 @@ export default function SalesPage() {
         </BreadcrumbList>
       </Breadcrumb>
       <div className="flex flex-1 flex-col gap-2 p-4">
-        {/* Chart and Insights Row */}
+        {/* Row 1: Sales Chart and Discount Chart */}
         <div className="grid auto-rows-min gap-2 md:grid-cols-2">
-          {/* Chart Column */}
           <div className="rounded-xl h-full w-full">
-            <LinearLineChartComponent
-              chartName={selectedProductChart.chartName}
-              chartData={selectedProductChart.chartData}
-              lineColor={
-                chartColors[Math.floor(Math.random() * chartColors.length)]
-              }
+            <LabelLineChartComponent
+              chartName={selectedProductChart.salesChart.chartName}
+              chartData={selectedProductChart.salesChart.data}
+              chartConfig={selectedProductChart.salesChart.chartConfig}
             />
           </div>
-          {/* Insights Column */}
           <div className="rounded-xl bg-muted/50 h-full w-full">
-            <StepAreaChartComponent lineColor={
-              chartColors[Math.floor(Math.random() * chartColors.length)]
-            } />
+            <StepAreaChartComponent
+              chartName={selectedProductChart.discountChart.chartName}
+              chartData={selectedProductChart.discountChart.data}
+              chartConfig={selectedProductChart.discountChart.chartConfig}
+            />
           </div>
         </div>
-        {/* Additional section: Gantt Chart for expiry tracking */}
+        {/* Row 2: Sellers Chart and Product Insights */}
         <div className="grid auto-rows-min gap-2 md:grid-cols-2">
-          <div className="grid auto-rows-min gap-2 md:col-span-2">
-            <div className="rounded-xl bg-muted/50">
-              <GanttChartComponent batches={selectedProductChart.batches} />
-            </div>
+          <div className="rounded-xl h-full w-full">
+            <MixedBarChartComponent
+              chartName={selectedProductChart.sellersChart.chartName}
+              chartData={selectedProductChart.sellersChart.data}
+              chartConfig={selectedProductChart.sellersChart.chartConfig}
+            />
+          </div>
+          <div className="rounded-xl bg-muted/50 h-full w-full">
+            <Card className="h-full p-10">
+              <span className="font-semibold">Product Insights</span>
+              <p>{selectedProductChart.productInsights}</p>
+            </Card>
           </div>
         </div>
       </div>
     </ContentLayout>
-  );
+  )
 }
