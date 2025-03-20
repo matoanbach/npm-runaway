@@ -10,3 +10,4 @@ nodeGroups:
     instanceType: t3.small
     desiredCapacity: 1
     volumeSize: 10
+
