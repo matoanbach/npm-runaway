@@ -7,6 +7,7 @@ import "./globals.css";
 
 import { ThemeProvider } from "@/components/providers/theme-provider";
 import { useEmail } from "@/hooks/use-email";
+import ChatSupport from "@/components/chat-support/chat-support";
 
 export const metadata: Metadata = {
   metadataBase: new URL(
@@ -54,6 +55,7 @@ export default function RootLayout({
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
           {children}
           <Toaster />
+          <ChatSupport/>
         </ThemeProvider>
       </body>
     </html>
