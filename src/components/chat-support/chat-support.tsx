@@ -35,7 +35,7 @@ export default function ChatSupport() {
             <ExpandableChatBody>
                 <ChatMessageList>
                     {messages.map((message, index) => (
-                        <ChatBubble variant={message.role == "user" ? "sent" : "received"}>
+                        <ChatBubble key={index} variant={message.role == "user" ? "sent" : "received"}>
                             <ChatBubbleAvatar src='' fallback={message.role == "user" ? "you" : "ai"}/>
                             <ChatBubbleMessage variant={message.role == "user" ? "sent" : "received"}>
                                 {message.content}
