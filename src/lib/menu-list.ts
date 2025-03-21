@@ -52,18 +52,6 @@ export function getMenuList(pathname: string): Group[] {
               href: "/stock",
               label: "Stock"
             },
-            {
-              href: "/stock/exdiscounts",
-              label: "Expiry & Discounts"
-            },
-            {
-              href: "/stock/prodinsights",
-              label: "Product Insights"
-            },
-            {
-              href: "/stock/depredictions",
-              label: "Demand Predictions"
-            }
           ]
         },
         {
@@ -75,18 +63,6 @@ export function getMenuList(pathname: string): Group[] {
               href: "/sales",
               label: "Live POS Sales"
             },
-            {
-              href: "/sales/sellers",
-              label: "Top/Bottom Sellers"
-            },
-            {
-              href: "/sales/discimpact",
-              label: "Discount Impact"
-            },
-            {
-              href: "/sales/purtrends",
-              label: "Purchase Trends"
-            }
           ]
         },
         {

@@ -1,9 +1,12 @@
+
 import type { Metadata } from "next";
 import { GeistSans } from "geist/font/sans";
+import { Toaster } from "@/components/ui/toaster"
 
 import "./globals.css";
 
 import { ThemeProvider } from "@/components/providers/theme-provider";
+import { useEmail } from "@/hooks/use-email";
 
 export const metadata: Metadata = {
   metadataBase: new URL(
@@ -33,7 +36,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "deep.food",
     description:
-    "Discover deep.food – a cutting-edge platform that uses real-time analytics and AI to optimize food inventory and drive sustainability in the food industry."
+      "Discover deep.food – a cutting-edge platform that uses real-time analytics and AI to optimize food inventory and drive sustainability in the food industry."
   }
 };
 
@@ -42,11 +45,15 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+
+
+
   return (
     <html lang="en" suppressHydrationWarning>
       <body className={GeistSans.className}>
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
           {children}
+          <Toaster />
         </ThemeProvider>
       </body>
     </html>

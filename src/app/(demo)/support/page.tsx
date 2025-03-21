@@ -33,7 +33,9 @@ export default function SupportPage() {
           </BreadcrumbItem>
         </BreadcrumbList>
       </Breadcrumb>
-      <PlaceholderContent />
+      {/* <PlaceholderContent /> */}
+    <div>
+    </div>  
     </ContentLayout>
   );
 }
