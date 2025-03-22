@@ -2,7 +2,8 @@
 
 import { Icon } from "@/components/ui/icon";
 import { Marquee } from "@devnomic/marquee";
-import "@devnomic/marquee/dist/index.css";
+// import "@devnomic/marquee/dist/index.css";
+import "../../app/marquee_index.css"
 import { icons } from "lucide-react";
 
 interface SponsorsProps {
@@ -49,9 +50,9 @@ export const SponsorsSection = () => {
       </h2>
       <div className="mx-auto">
         <Marquee
-          className="gap-[3rem]"
+          className="gap-[3rem] border-0 !border-none"
           fade
-          innerClassName="gap-[3rem]"
+          innerClassName="gap-[3rem] border-0 !border-none"
           pauseOnHover
         >
           {sponsors.map(({ icon, name }) => (

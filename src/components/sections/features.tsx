@@ -163,8 +163,9 @@ export const FeaturesSection = () => {
           <div key={title}>
             <Card className="h-full bg-background border-0 shadow-none">
               <CardHeader className="flex justify-center items-center">
-                <div className="bg-purple-200 p-2 rounded-full ring-8 ring-purple-100 mb-4 dark:bg-purple-500 dark:ring-purple-900">
+                {/* <div className="bg-purple-200 p-2 rounded-full ring-8 ring-purple-100 mb-4 dark:bg-purple-500 dark:ring-purple-900"> */}
                 {/* <div className="bg-primary/20 p-2 rounded-full ring-8 ring-purple-700 ring-offset-4 ring-offset-purple-300 mb-4"> */}
+                <div className="bg-primary/20 p-2 rounded-full ring-8 ring-primary/10 mb-4">
                   <Icon
                     name={icon as keyof typeof icons}
                     size={24}
