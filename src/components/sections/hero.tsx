@@ -36,7 +36,7 @@ export const HeroSection = () => {
 
           <div className="space-y-4 md:space-y-0 md:space-x-4">
             <Link href="/dashboard">
-              <Button className="w-5/6 md:w-1/4 font-bold group/arrow bg-purple-600">
+              <Button className="w-5/6 md:w-1/4 font-bold group/arrow ">
                 Get Started
                 <ArrowRight className="ml-2 group-hover/arrow:translate-x-1 transition-transform" />
               </Button>
@@ -50,8 +50,43 @@ export const HeroSection = () => {
             </Button>
           </div>
         </div>
-
-        <div className="relative group mt-14">
+        <div className="w-full flex mt-14 justify-center relative">
+          <div className="absolute top-2 lg:-top-8 left-1/2 transform -translate-x-1/2 w-[80%] mx-auto h-24 lg:h-80 bg-primary/50 rounded-full blur-3xl z-0"></div>
+          <div className="z-10">
+            <Image
+              src="/demo-light-min.png"
+              width={1080}
+              height={608}
+              alt="demo"
+              priority
+              className="border rounded-xl shadow-sm dark:hidden"
+            />
+            <Image
+              src="/demo-dark-min.png"
+              width={1080}
+              height={608}
+              alt="demo-dark"
+              priority
+              className="border border-zinc-600 rounded-xl shadow-sm hidden dark:block dark:shadow-gray-500/5"
+            />
+            <Image
+              src="/demo-mobile-light-min.png"
+              width={228}
+              height={494}
+              alt="demo-mobile"
+              className="border rounded-xl absolute bottom-0 right-0 hidden lg:block dark:hidden"
+            />
+            <Image
+              src="/demo-mobile-dark-min.png"
+              width={228}
+              height={494}
+              alt="demo-mobile"
+              className="border border-zinc-600 rounded-xl absolute bottom-0 right-0 hidden dark:lg:block"
+            />
+          </div>
+          <div className="absolute bottom-0 left-0 w-full h-20 md:h-28 bg-gradient-to-b from-background/0 via-background/50 to-background rounded-lg"></div>
+        </div>
+        {/* <div className="relative group mt-14">
           <div className="absolute top-2 lg:-top-8 left-1/2 transform -translate-x-1/2 w-[90%] mx-auto h-24 lg:h-80 bg-primary/50 rounded-full blur-3xl"></div>
           <Image
             width={1200}
@@ -61,7 +96,7 @@ export const HeroSection = () => {
             alt="Dashboard view"
           />
           <div className="absolute bottom-0 left-0 w-full h-20 md:h-28 bg-gradient-to-b from-background/0 via-background/50 to-background rounded-lg"></div>
-        </div>
+        </div> */}
       </div>
     </section>
   );

@@ -59,8 +59,8 @@ export const BenefitsSection = () => {
                   <Icon
                     name={icon as keyof typeof icons}
                     size={32}
-                    // color="hsl(var(--primary))"
-                    color="purple"
+                    color="hsl(var(--primary))"
+                    // color="purple"
                     className="mb-6 text-primary"
                   />
                   <span className="text-5xl text-muted-foreground/15 font-medium transition-all delay-75 group-hover/number:text-muted-foreground/30">
