@@ -18,5 +18,12 @@ spec:
       - name: front-end-api
         image: 486660158178.dkr.ecr.us-east-2.amazonaws.com/npm-runaway:latest
         imagePullPolicy: Always
+        env:
+        - name: OPENAI_API_KEY
+          valueFrom:
+            secretKeyRef:
+              name: nextjs-env
+              key: OPENAI_API_KEY
         ports:
         - containerPort: 3000
+        

@@ -19,6 +19,10 @@ const nextConfig = {
         hostname: "media.licdn.com"
       }
     ]
+  },
+  experimental: {
+    // Setting it to "loose" often fixes ESM import issues
+    esmExternals: "loose"
   }
 };
 

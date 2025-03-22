@@ -51,8 +51,10 @@ export function Menu({ isOpen }: MenuProps) {
                 <p className="pb-2"></p>
               )}
               {menus.map(
-                ({ href, label, icon: Icon, active, submenus }, index) =>
-                  !submenus || submenus.length === 0 ? (
+                ({ href, label, icon: Icon, active, submenus, disabled }, index) => {
+                  if (disabled) return;
+                  return !submenus || submenus.length === 0 ? (
+                    // (!submenus || submenus.length === 0) && !disabled ? (
                     <div className="w-full" key={index}>
                       <TooltipProvider disableHoverableContent>
                         <Tooltip delayDuration={100}>
@@ -61,7 +63,7 @@ export function Menu({ isOpen }: MenuProps) {
                               variant={
                                 (active === undefined &&
                                   pathname.startsWith(href)) ||
-                                active
+                                  active
                                   ? "secondary"
                                   : "ghost"
                               }
@@ -110,7 +112,7 @@ export function Menu({ isOpen }: MenuProps) {
                       />
                     </div>
                   )
-              )}
+                })}
             </li>
           ))}
           <li className="w-full grow flex items-end">
@@ -118,7 +120,7 @@ export function Menu({ isOpen }: MenuProps) {
               <Tooltip delayDuration={100}>
                 <TooltipTrigger asChild>
                   <Button
-                    onClick={() => {}}
+                    onClick={() => { }}
                     variant="outline"
                     className="w-full justify-center h-10 mt-5"
                   >
