@@ -14,6 +14,7 @@ import PlaceholderContent from "@/components/demo/placeholder-content";
 import { Card, CardContent } from "@/components/ui/card";
 import { ResponsiveTableComponent } from "@/components/responsive-table/responsive-table";
 import { InteractiveAreaChart } from "@/components/charts/interactive-area-chart/interactive-area-chart";
+import { CertificationFormComponent } from "@/components/certification-form/certification-form";
 
 export default function SupplierDashboardPage() {
     return (
@@ -28,6 +29,13 @@ export default function SupplierDashboardPage() {
                     <BreadcrumbSeparator />
                     <BreadcrumbItem>
                         <BreadcrumbPage>Dashboard</BreadcrumbPage>
+                    </BreadcrumbItem>
+                    <BreadcrumbItem>
+                        <BreadcrumbPage>
+                            <div className="ml-4">
+                                <CertificationFormComponent />
+                            </div>
+                        </BreadcrumbPage>
                     </BreadcrumbItem>
                 </BreadcrumbList>
             </Breadcrumb>
