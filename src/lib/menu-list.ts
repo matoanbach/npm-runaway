@@ -50,12 +50,12 @@ const companySections: Group[] = [
       {
         href: "/company-stock",
         label: "Stock",
-        icon: ChartNoAxesCombined,
+        icon: ChartNoAxesCombined
       },
       {
         href: "/company-sales",
         label: "POS Sales",
-        icon: BadgeDollarSign,
+        icon: BadgeDollarSign
       },
       {
         href: "",
@@ -85,7 +85,7 @@ const companySections: Group[] = [
         href: "/company-settings",
         label: "Settings",
         icon: Settings
-      },
+      }
     ]
   }
 ];
@@ -103,11 +103,11 @@ const supplierSections: Group[] = [
     ]
   },
   {
-    groupLabel: "Supplier",
+    groupLabel: "Sales",
     menus: [
       {
         href: "/supplier-info",
-        label: "Supplier Info Form",
+        label: "POS Sales",
         icon: FileText,
         submenus: []
       }
@@ -131,11 +131,12 @@ const supplierSections: Group[] = [
         href: "/supplier-settings",
         label: "Settings",
         icon: Settings
-      },
+      }
     ]
   }
 ];
 
-export function getMenuList(pathname: string): Group[] {
+export function getMenuList(pathname: string, view: string): Group[] {
+  if (view === "company") return companySections;
   return supplierSections;
 }
