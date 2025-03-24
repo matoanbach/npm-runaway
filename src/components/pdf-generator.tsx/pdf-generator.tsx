@@ -3,212 +3,81 @@
 import React from "react";
 import type { Template } from "@pdfme/common";
 import { generate } from "@pdfme/generator";
+import approved_template from "../../mock/certificate-template/approved_template.json";
+import pending_template from "../../mock/certificate-template/pending_template.json";
+import rejected_template from "../../mock/certificate-template/rejected_template.json";
 import { Button } from "../ui/button";
-import pdfTemplate from '../../mock/certificate-template/template.json';
-
-// const schemas = [[
-//   {
-//     name: "company_name",
-//     type: "text",
-//     text: "{{company_name}}",
-//     position: { x: 132.03, y: 93.08 },
-//     width: 164.729376,
-//     height: 10.05,
-//     rotate: 0,
-//     alignment: "left",
-//     verticalAlignment: "top",
-//     fontSize: 17,
-//     lineHeight: 1,
-//     characterSpacing: 0,
-//     fontColor: "#ffffff",
-//     backgroundColor: "",
-//     opacity: 1,
-//     strikethrough: false,
-//     underline: false,
-//     fontName: "NotoSansJP",
-//     readOnly: false,
-//     required: false,
-//   },
-//   {
-//     name: "company_email",
-//     type: "text",
-//     text: "{{company_email}}",
-//     position: { x: 131.09, y: 109.17 },
-//     width: 165.57937600000002,
-//     height: 10.05,
-//     rotate: 0,
-//     alignment: "left",
-//     verticalAlignment: "top",
-//     fontSize: 17,
-//     lineHeight: 1,
-//     characterSpacing: 0,
-//     fontColor: "#ffffff",
-//     backgroundColor: "",
-//     opacity: 1,
-//     strikethrough: false,
-//     underline: false,
-//     fontName: "NotoSansJP",
-//     readOnly: false,
-//     required: false,
-//   },
-//   {
-//     name: "company_phone",
-//     type: "text",
-//     text: "{{company_phone}}",
-//     position: { x: 130.79, y: 126.57 },
-//     width: 165.979376,
-//     height: 10.05,
-//     rotate: 0,
-//     alignment: "left",
-//     verticalAlignment: "top",
-//     fontSize: 17,
-//     lineHeight: 1,
-//     characterSpacing: 0,
-//     fontColor: "#ffffff",
-//     backgroundColor: "",
-//     opacity: 1,
-//     strikethrough: false,
-//     underline: false,
-//     fontName: "NotoSansJP",
-//     readOnly: false,
-//     required: false,
-//   },
-//   {
-//     name: "company_product",
-//     type: "text",
-//     text: "{{company_product}}",
-//     position: { x: 130.82, y: 143.45 },
-//     width: 166.20937600000002,
-//     height: 10.05,
-//     rotate: 0,
-//     alignment: "left",
-//     verticalAlignment: "top",
-//     fontSize: 17,
-//     lineHeight: 1,
-//     characterSpacing: 0,
-//     fontColor: "#ffffff",
-//     backgroundColor: "",
-//     opacity: 1,
-//     strikethrough: false,
-//     underline: false,
-//     fontName: "NotoSansJP",
-//     readOnly: false,
-//     required: false,
-//   },
-//   {
-//     name: "product_origin",
-//     type: "text",
-//     text: "{{product_origin}}",
-//     position: { x: 130.29, y: 160.86 },
-//     width: 166.20937600000002,
-//     height: 10.05,
-//     rotate: 0,
-//     alignment: "left",
-//     verticalAlignment: "top",
-//     fontSize: 17,
-//     lineHeight: 1,
-//     characterSpacing: 0,
-//     fontColor: "#ffffff",
-//     backgroundColor: "",
-//     opacity: 1,
-//     strikethrough: false,
-//     underline: false,
-//     fontName: "NotoSansJP",
-//     readOnly: false,
-//     required: false,
-//   },
-//   {
-//     name: "general_manager",
-//     type: "text",
-//     text: "{{general_manager}}",
-//     position: { x: 58.59 + 20, y: 183.29 },
-//     width: 66.94,
-//     height: 10.05,
-//     rotate: 0,
-//     alignment: "left",
-//     verticalAlignment: "top",
-//     fontSize: 17,
-//     lineHeight: 1,
-//     characterSpacing: 0,
-//     fontColor: "#b900ff",
-//     backgroundColor: "",
-//     opacity: 1,
-//     strikethrough: false,
-//     underline: false,
-//     fontName: "NotoSansJP",
-//     readOnly: false,
-//     required: false,
-//   },
-//   {
-//     name: "date_issue",
-//     type: "text",
-//     text: "{{date_issue}}",
-//     position: { x: 143.46 + 15, y: 183.77 },
-//     width: 53.97,
-//     height: 10.05,
-//     rotate: 0,
-//     alignment: "left",
-//     verticalAlignment: "top",
-//     fontSize: 17,
-//     lineHeight: 1,
-//     characterSpacing: 0,
-//     fontColor: "#b900ff",
-//     backgroundColor: "",
-//     opacity: 1,
-//     strikethrough: false,
-//     underline: false,
-//     fontName: "NotoSansJP",
-//     readOnly: false,
-//     required: false,
-//   },
-//   {
-//     name: "certificate_id_number",
-//     type: "text",
-//     text: "{{certificate_id_number}}",
-//     position: { x: 214.58, y: 183.98 },
-//     width: 82.449376,
-//     height: 10.05,
-//     rotate: 0,
-//     alignment: "left",
-//     verticalAlignment: "top",
-//     fontSize: 17,
-//     lineHeight: 1,
-//     characterSpacing: 0,
-//     fontColor: "#b900ff",
-//     backgroundColor: "",
-//     opacity: 1,
-//     strikethrough: false,
-//     underline: false,
-//     fontName: "NotoSansJP",
-//     readOnly: false,
-//     required: false,
-//   }
-// ]];
+import { image } from '@pdfme/schemas';
 
 
-// const template: Template = {
-//   basePdf: pdfTemplate.basePdf,
-//   schemas: schemas
-// };
+// const approved_template = approved_json as unknown as Template
+// const pending_template = pending_json as unknown as Template
+// const rejected_template = rejected_json as unknown as Template
 
-const inputs = [
-  {
-    company_name: "Example Supplier Co.",
-    company_email: "sales@example.com",
-    company_phone: "+1-555-1234",
-    company_product: "Fruits, Vegetables, Meat, Processed Food",
-    product_origin: "Canada",
-    general_manager: "John Doe",
-    date_issue: "2025-03-22",
-    certificate_id_number: "CERT-89746-X5-91JP",
-  },
-];
+// Define the certificate data type.
+export type CertificateData = {
+  certId: string;
+  company_name: string;
+  company_email: string;
+  company_phone: string;
+  company_product: string;
+  product_origin: string;
+  general_manager: string;
+  date_issue: string;
+  certificate_id_number: string;
+  status: string;
+  date_submitted: string;
+  expiration_date: string;
+  certificate_url: string;
+  products: string;
+  rejection_reason?: string;
+};
 
-const PdfGenerator: React.FC = () => {
+// Define component props.
+type PdfGeneratorProps = {
+  certificate: CertificateData;
+};
+
+const plugins = {
+  Image: image,
+};
+
+
+const PdfGenerator: React.FC<PdfGeneratorProps> = ({ certificate }) => {
   const handleGeneratePDF = async () => {
     try {
-      const pdf = await generate({ template: pdfTemplate, inputs });
-      // Convert pdf.buffer into a Uint8Array to satisfy BlobPart type
+      // Select the template based on certificate status.
+      let selectedTemplate: Template;
+      switch (certificate.status) {
+        case "Approved":
+          selectedTemplate = approved_template;
+          break;
+        case "Pending":
+          selectedTemplate = pending_template;
+          break;
+        case "Rejected":
+          selectedTemplate = rejected_template;
+          break;
+        default:
+          selectedTemplate = approved_template;
+      }
+
+      // Prepare inputs by mapping certificate fields to the expected template fields.
+      // (Assuming the template fields have the same names as the certificate keys.)
+      const inputs = [
+        {
+          ...certificate,
+          // If you need to add a prefix or additional text for rejected status, do so here.
+          ...(certificate.status === "Rejected" && certificate.rejection_reason
+            ? { rejection_reason: certificate.rejection_reason }
+            : {}),
+        },
+      ];
+
+      // Generate the PDF using the selected template and inputs.
+      
+      // @ts-expect-error -- temporarily ignoring pdfme's type mismatch
+      const pdf = await generate({ template: selectedTemplate, inputs });
       const uint8Array = new Uint8Array(pdf.buffer);
       const blob = new Blob([uint8Array], { type: "application/pdf" });
       const url = URL.createObjectURL(blob);
@@ -219,10 +88,9 @@ const PdfGenerator: React.FC = () => {
   };
 
   return (
-    <div>
-      <Button onClick={handleGeneratePDF}>Generate PDF</Button>
-    </div>
+    <Button variant="outline" onClick={handleGeneratePDF}>View</Button>
   );
 };
+
 
 export default PdfGenerator;

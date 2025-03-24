@@ -2,13 +2,16 @@
 
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
+import { useUserView } from "@/hooks/use-account";
 import { ArrowRight } from "lucide-react";
-import { useTheme } from "next-themes";
+// import { useTheme } from "next-themes";
 import Image from "next/image";
 import Link from "next/link";
+import { useEffect } from "react";
 
 export const HeroSection = () => {
-  const { theme } = useTheme();
+  // const { theme } = useTheme();
+  const { view } = useUserView();
 
   return (
     <section className="container w-full">
@@ -35,7 +38,7 @@ export const HeroSection = () => {
           </p>
 
           <div className="space-y-4 md:space-y-0 md:space-x-4">
-            <Link href="/company-dashboard">
+            <Link href={view === "company" ? "/company-dashboard" : "/supplier-dashboard"} >
               <Button className="w-5/6 md:w-1/4 font-bold group/arrow ">
                 Get Started
                 <ArrowRight className="ml-2 group-hover/arrow:translate-x-1 transition-transform" />
@@ -86,17 +89,6 @@ export const HeroSection = () => {
           </div>
           <div className="absolute bottom-0 left-0 w-full h-20 md:h-28 bg-gradient-to-b from-background/0 via-background/50 to-background rounded-lg"></div>
         </div>
-        {/* <div className="relative group mt-14">
-          <div className="absolute top-2 lg:-top-8 left-1/2 transform -translate-x-1/2 w-[90%] mx-auto h-24 lg:h-80 bg-primary/50 rounded-full blur-3xl"></div>
-          <Image
-            width={1200}
-            height={1200}
-            className="w-full md:w-[1200px] mx-auto rounded-lg border border-t-2 border-secondary border-t-primary/30 transition-transform duration-200 ease-linear group-hover:scale-[1.01] saturate-100 group-hover:saturate-100"
-            src={theme === "light" ? "/hero-image-light.jpeg" : "/hero-image-dark.jpeg"}
-            alt="Dashboard view"
-          />
-          <div className="absolute bottom-0 left-0 w-full h-20 md:h-28 bg-gradient-to-b from-background/0 via-background/50 to-background rounded-lg"></div>
-        </div> */}
       </div>
     </section>
   );
