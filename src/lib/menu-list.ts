@@ -137,6 +137,6 @@ const supplierSections: Group[] = [
 ];
 
 export function getMenuList(pathname: string, view: string): Group[] {
-  if (view === "company") return companySections;
-  return supplierSections;
+  if (view === "supplier") return supplierSections;
+  return companySections;
 }

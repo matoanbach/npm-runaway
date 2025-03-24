@@ -12,6 +12,8 @@ import {
 } from "@/components/ui/breadcrumb";
 import PlaceholderContent from "@/components/demo/placeholder-content";
 import { Card, CardContent } from "@/components/ui/card";
+import { ResponsiveTableComponent } from "@/components/responsive-table/responsive-table";
+import { InteractiveAreaChart } from "@/components/charts/interactive-area-chart/interactive-area-chart";
 
 export default function SupplierDashboardPage() {
     return (
@@ -29,20 +31,15 @@ export default function SupplierDashboardPage() {
                     </BreadcrumbItem>
                 </BreadcrumbList>
             </Breadcrumb>
-            <Card className="rounded-lg border-none mt-6">
-                <CardContent className="p-6">
-                    <div className="flex justify-center items-center min-h-[calc(100vh-56px-64px-20px-24px-56px-48px)]">
-                        <div className="flex flex-col relative">
-                            <ul>
-                                <li>Company information summary</li>
-                                <li>my submitted documents as a list</li>
-                                <li>my companys verification progress</li>
-                                <li>if my company is verified, show the certificates’ expiration dates</li>
-                            </ul>
-                        </div>
+            <div className="flex flex-1 flex-col gap-4 p-4 pt-4">
+                <div className="grid auto-rows-min gap-4 md:grid-cols-1">
+                    <div className="rounded-xl bg-muted/50" >
+                        <ResponsiveTableComponent />
                     </div>
-                </CardContent>
-            </Card>
+                </div>
+                <div className="min-h-[100vh] flex-1 rounded-xl bg-muted/50 md:min-h-min" />
+            </div>
+
         </ContentLayout>
     );
 }

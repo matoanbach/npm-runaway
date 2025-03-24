@@ -51,7 +51,6 @@ export default function SupplierCertificatesPage() {
                             </ul>
                         </div>
                     </div>
-                    <PdfGenerator />
                 </CardContent>
             </Card>
         </ContentLayout>
