@@ -11,6 +11,7 @@ import {
     BreadcrumbSeparator,
 } from "@/components/ui/breadcrumb";
 import PlaceholderContent from "@/components/demo/placeholder-content";
+import { Card, CardContent } from "@/components/ui/card";
 
 export default function SupplierSettingsPage() {
     return (
@@ -28,7 +29,7 @@ export default function SupplierSettingsPage() {
                     </BreadcrumbItem>
                 </BreadcrumbList>
             </Breadcrumb>
-            <PlaceholderContent />
+
         </ContentLayout>
     );
 }

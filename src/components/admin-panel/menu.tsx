@@ -15,14 +15,16 @@ import {
   TooltipContent,
   TooltipProvider
 } from "@/components/ui/tooltip";
+import { useUserView } from "@/hooks/use-account";
 
 interface MenuProps {
   isOpen: boolean | undefined;
 }
 
 export function Menu({ isOpen }: MenuProps) {
+  const { view } = useUserView();
   const pathname = usePathname();
-  const menuList = getMenuList(pathname);
+  const menuList = getMenuList(pathname, view);
 
   return (
     <ScrollArea className="[&>div>div[style]]:!block">

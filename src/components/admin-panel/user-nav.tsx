@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { LayoutGrid, LogOut, User } from "lucide-react";
+import { Eye, LayoutGrid, LogOut, User } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
@@ -20,8 +20,19 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger
 } from "@/components/ui/dropdown-menu";
+import { useUserView } from "@/hooks/use-account";
+import { useRouter } from "next/navigation";
 
 export function UserNav() {
+  const { view, switchView } = useUserView();
+  const router = useRouter();
+
+  const handleSwitchView = () => {
+    switchView();
+
+    const nextPath = view === "company" ? "/supplier-dashboard" : "/company-dashboard"
+    router.push(nextPath);
+  }
   return (
     <DropdownMenu>
       <TooltipProvider disableHoverableContent>
@@ -61,14 +72,14 @@ export function UserNav() {
             </Link>
           </DropdownMenuItem>
           <DropdownMenuItem className="hover:cursor-pointer" asChild>
-            <Link href="/account" className="flex items-center">
-              <User className="w-4 h-4 mr-3 text-muted-foreground" />
-              Account
-            </Link>
+            <div className="flex items-center" onClick={handleSwitchView} >
+              <Eye className="w-4 h-4 mr-3 text-muted-foreground" />
+              To {view === "company" ? "Supplier" : "Company"} View
+            </div>
           </DropdownMenuItem>
         </DropdownMenuGroup>
         <DropdownMenuSeparator />
-        <DropdownMenuItem className="hover:cursor-pointer" onClick={() => {}}>
+        <DropdownMenuItem className="hover:cursor-pointer" onClick={() => { }}>
           <LogOut className="w-4 h-4 mr-3 text-muted-foreground" />
           Sign out
         </DropdownMenuItem>
