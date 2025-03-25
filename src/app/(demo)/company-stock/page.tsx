@@ -24,10 +24,11 @@ import {
   SelectValue,
 } from "@/components/ui/select"
 import { Separator } from "@/components/ui/separator"
-import { Button } from "@/components/ui/button"
-import { toast } from "@/hooks/use-toast"  // import the toast hook
+import { toast } from "@/hooks/use-toast"
 import { useEmail } from "@/hooks/use-email"
+import { SupplierTableComponent } from "@/components/supplier-table/supplier-table"
 
+// Type definitions
 type ProductExpiry = {
   name: string;
   expiryDescription: string;
@@ -44,94 +45,13 @@ type Batch = {
 
 type ProductChart = {
   chartName: string;
+  qr: string;
   chartData: { month: string; product: number }[];
   productInsights: string;
   batches: Batch[];
+  suppliers: CertificateData[];
+  alternative_suppliers: CertificateData[];
 };
-
-const productOptions = ["apple", "banana", "blueberry", "grapes", "pineapple"];
-
-const sampleProductCharts: ProductChart[] = productOptions.map((productName) => {
-  // Define product-specific insights
-  let insights = "";
-  switch (productName) {
-    case "apple":
-      insights = "Apple: High consumer demand and robust turnover ensure minimal waste.";
-      break;
-    case "banana":
-      insights = "Banana: Stable performance with occasional supply fluctuations requiring monitoring.";
-      break;
-    case "blueberry":
-      insights = "Blueberry: Premium quality with lower volumes, leading to high customer satisfaction.";
-      break;
-    case "grapes":
-      insights = "Grapes: Steady demand with seasonal variations; inventory levels are well-managed.";
-      break;
-    case "pineapple":
-      insights = "Pineapple: Strong growth with extended shelf life and low waste levels.";
-      break;
-    default:
-      insights = "No insights available.";
-  }
-
-  // Generate chart data for months January to June
-  const months = ["January", "February", "March", "April", "May", "June"];
-  const chartData = months.map((month) => ({
-    month,
-    product: Math.floor(Math.random() * 300), // Random stock level between 0 and 299
-  }));
-
-  // Define sample batches for expiry tracking with random progress values
-  const batches: Batch[] = [
-    {
-      id: "A",
-      label: "Batch A",
-      products: [
-        {
-          name: "Product 1",
-          expiryDescription: "Expires in 5 days",
-          dateRange: "Day 1 - Day 5",
-          duration: "5 days",
-          progress: Math.floor(Math.random() * 100),
-        },
-        {
-          name: "Product 2",
-          expiryDescription: "Expires in 6 days",
-          dateRange: "Day 2 - Day 7",
-          duration: "6 days",
-          progress: Math.floor(Math.random() * 100),
-        },
-      ],
-    },
-    {
-      id: "B",
-      label: "Batch B",
-      products: [
-        {
-          name: "Product 3",
-          expiryDescription: "Expires in 15 days",
-          dateRange: "Day 8 - Day 22",
-          duration: "15 days",
-          progress: Math.floor(Math.random() * 100),
-        },
-        {
-          name: "Product 4",
-          expiryDescription: "Expires in 14 days",
-          dateRange: "Day 7 - Day 20",
-          duration: "14 days",
-          progress: Math.floor(Math.random() * 100),
-        },
-      ],
-    },
-  ];
-
-  return {
-    chartName: productName.charAt(0).toUpperCase() + productName.slice(1),
-    chartData,
-    productInsights: insights,
-    batches,
-  };
-});
 
 const chartColors = [
   "hsl(210, 80%, 50%)",
@@ -141,16 +61,26 @@ const chartColors = [
   "hsl(90, 80%, 40%)",
 ];
 
+// Import the JSON data
+import products from "../../../mock/stock/products/products.json"
+import { CertificateData } from "@/components/pdf-generator.tsx/pdf-generator"
+import { QRScanComponent } from "@/components/qr-scan/qr-scan"
+
+// Assume the JSON is in the format { "data": ProductChart[] }
+const sampleProductCharts: ProductChart[] = products.data;
+
+// Derive product options from the JSON data
+const productOptions = sampleProductCharts.map((chart) => chart.chartName);
+
 export default function StockPage() {
-  // State for the selected product chart; default to first product ("apple")
-  const [selectedProductChart, setSelectedProductChart] = useState(sampleProductCharts[0]);
+  // State for the selected product chart; default to first product
+  const [selectedProductChart, setSelectedProductChart] = useState<ProductChart>(sampleProductCharts[0]);
   const { settings } = useEmail();
 
   let sender: string;
   let receiver: string;
   let password: string;
 
-  // Only use userCredentials if both user and pass are provided.
   if (settings.senderEmail && settings.senderAppPassword) {
     sender = settings.senderEmail;
     password = settings.senderAppPassword;
@@ -163,8 +93,8 @@ export default function StockPage() {
 
   const handleSendEmail = async () => {
     const emailData = {
-      from: sender, // your email address
-      to: receiver,   // recipient email address
+      from: sender,
+      to: receiver,
       subject: "Alert: Near-Expiry Product Notification & Recommendations",
       html: `
         <div style="font-family: Arial, sans-serif; color: #333; line-height: 1.6;">
@@ -194,30 +124,13 @@ export default function StockPage() {
           </table>
           <p>Please review the inventory and take the necessary actions to handle these near-expiry products.</p>
           <h2 style="color: #d9534f;">Recommendations</h2>
-          <p>
-            As a store supervisor, we highly recommend the following options:
-          </p>
+          <p>As a store supervisor, we highly recommend the following options:</p>
           <ul style="margin-left: 20px;">
             <li>Apply a discount on these near-expiry products to boost sales.</li>
             <li>Redistribute the products to other store locations if needed.</li>
-            <li>
-              Consider donating them to non-profit organizations. Here are some organizations that might accept near-expiry products:
-              <ul style="margin-left: 20px;">
-                <li>
-                  <a href="https://www.feedingamerica.org" style="color: #337ab7;">Feeding America</a>
-                </li>
-                <li>
-                  <a href="https://www.foodbank.org" style="color: #337ab7;">Food Bank</a>
-                </li>
-                <li>
-                  <a href="https://www.lifesavers.org" style="color: #337ab7;">Lifesavers</a>
-                </li>
-              </ul>
-            </li>
+            <li>Consider donating them to non-profit organizations.</li>
           </ul>
-          <p>
-            These automatic expiry alerts help you manage inventory effectively, minimize losses, and even support your community by donating products in need.
-          </p>
+          <p>These automatic expiry alerts help you manage inventory effectively, minimize losses, and even support your community.</p>
           <p>Thank you,<br>Your Inventory Management Team</p>
         </div>
       `,
@@ -234,8 +147,6 @@ export default function StockPage() {
         body: JSON.stringify(emailData),
       });
       const data = await res.json();
-      console.log("sender: ", sender)
-      console.log("receiver: ", receiver)
       if (res.ok) {
         toast({
           title: "Email Sent Successfully",
@@ -295,9 +206,11 @@ export default function StockPage() {
           <BreadcrumbItem>
             <Select
               onValueChange={(value) => {
-                const index = productOptions.indexOf(value)
-                if (index !== -1) {
-                  setSelectedProductChart(sampleProductCharts[index])
+                const selectedChart = sampleProductCharts.find(
+                  (chart) => chart.chartName.toLowerCase() === value.toLowerCase()
+                );
+                if (selectedChart) {
+                  setSelectedProductChart(selectedChart);
                 }
               }}
             >
@@ -310,12 +223,15 @@ export default function StockPage() {
                   <Separator />
                   {productOptions.map((product) => (
                     <SelectItem key={product} value={product}>
-                      {product.charAt(0).toUpperCase() + product.slice(1)}
+                      {product}
                     </SelectItem>
                   ))}
                 </SelectGroup>
               </SelectContent>
             </Select>
+          </BreadcrumbItem>
+          <BreadcrumbItem>
+            <QRScanComponent qr={selectedProductChart.qr}/>
           </BreadcrumbItem>
         </BreadcrumbList>
       </Breadcrumb>
@@ -341,6 +257,13 @@ export default function StockPage() {
           <div className="grid auto-rows-min gap-2 md:col-span-2">
             <div className="rounded-xl bg-muted/50">
               <GanttChartComponent batches={selectedProductChart.batches} />
+            </div>
+          </div>
+        </div>
+        <div className="grid auto-rows-min gap-2 md:grid-cols-2">
+          <div className="grid auto-rows-min gap-2 md:col-span-2">
+            <div className="rounded-xl bg-muted/50">
+              <SupplierTableComponent suppliers={selectedProductChart.suppliers} alternative_suppliers={selectedProductChart.alternative_suppliers} />
             </div>
           </div>
         </div>

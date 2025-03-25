@@ -1,0 +1,1064 @@
+{
+  "data": [
+    {
+      "chartName": "Apple",
+      "qr": "apple.png",
+      "chartData": [
+        { "month": "January", "product": 150 },
+        { "month": "February", "product": 75 },
+        { "month": "March", "product": 200 },
+        { "month": "April", "product": 100 },
+        { "month": "May", "product": 50 },
+        { "month": "June", "product": 120 }
+      ],
+      "productInsights": "Apple: High consumer demand and robust turnover ensure minimal waste.",
+      "batches": [
+        {
+          "id": "A",
+          "label": "Batch A",
+          "products": [
+            {
+              "name": "Product 1",
+              "expiryDescription": "Expires in 5 days",
+              "dateRange": "Day 1 - Day 5",
+              "duration": "5 days",
+              "progress": 80
+            },
+            {
+              "name": "Product 2",
+              "expiryDescription": "Expires in 6 days",
+              "dateRange": "Day 2 - Day 7",
+              "duration": "6 days",
+              "progress": 55
+            }
+          ]
+        },
+        {
+          "id": "B",
+          "label": "Batch B",
+          "products": [
+            {
+              "name": "Product 3",
+              "expiryDescription": "Expires in 15 days",
+              "dateRange": "Day 8 - Day 22",
+              "duration": "15 days",
+              "progress": 30
+            },
+            {
+              "name": "Product 4",
+              "expiryDescription": "Expires in 14 days",
+              "dateRange": "Day 7 - Day 20",
+              "duration": "14 days",
+              "progress": 90
+            }
+          ]
+        }
+      ],
+      "suppliers": [
+        {
+          "certId": "CERT-001",
+          "company_name": "John Doe Supplies",
+          "company_email": "contact@johndoesupplies.com",
+          "company_phone": "+1-555-0101",
+          "company_product": "apple",
+          "product_origin": "US",
+          "general_manager": "John Doe",
+          "date_issue": "2023-01-15",
+          "certificate_id_number": "APPL-12345",
+          "status": "Approved",
+          "date_submitted": "2023-01-10",
+          "expiration_date": "2024-01-10",
+          "certificate_url": "http://example.com/certificates/CERT-001",
+          "products": "apple",
+          "tax": 25
+        },
+        {
+          "certId": "CERT-002",
+          "company_name": "Emily Carter Inc.",
+          "company_email": "info@emilycarterinc.com",
+          "company_phone": "+1-555-0102",
+          "company_product": "apple",
+          "product_origin": "US",
+          "general_manager": "Emily Carter",
+          "date_issue": "2023-02-20",
+          "certificate_id_number": "APPL-23456",
+          "status": "Approved",
+          "date_submitted": "2023-02-18",
+          "expiration_date": "2024-02-18",
+          "certificate_url": "http://example.com/certificates/CERT-002",
+          "products": "apple",
+          "tax": 25
+        },
+        {
+          "certId": "CERT-003",
+          "company_name": "Michael Brown Trading",
+          "company_email": "sales@michaelbrowntrading.com",
+          "company_phone": "+1-555-0103",
+          "company_product": "apple",
+          "product_origin": "US",
+          "general_manager": "Michael Brown",
+          "date_issue": "2023-03-05",
+          "certificate_id_number": "APPL-34567",
+          "status": "Approved",
+          "date_submitted": "2023-03-03",
+          "expiration_date": "2024-03-03",
+          "certificate_url": "http://example.com/certificates/CERT-003",
+          "products": "apple",
+          "tax": 25
+        }
+      ],
+      "alternative_suppliers": [
+        {
+          "certId": "CERT-121",
+          "company_name": "Maple Innovations",
+          "company_email": "info@mapleinnovations.ca",
+          "company_phone": "+1-416-555-0121",
+          "company_product": "apple",
+          "product_origin": "Canada",
+          "general_manager": "Lucas Campbell",
+          "date_issue": "2023-10-01",
+          "certificate_id_number": "CAN-121",
+          "status": "Approved",
+          "date_submitted": "2023-09-30",
+          "expiration_date": "2024-09-30",
+          "certificate_url": "http://example.com/certificates/CERT-121",
+          "products": "apple",
+          "tax": 0
+        },
+        {
+          "certId": "CERT-122",
+          "company_name": "Northern Roots Ltd.",
+          "company_email": "contact@northernroots.ca",
+          "company_phone": "+1-416-555-0122",
+          "company_product": "apple",
+          "product_origin": "Canada",
+          "general_manager": "Mia Turner",
+          "date_issue": "2023-10-02",
+          "certificate_id_number": "CAN-122",
+          "status": "Approved",
+          "date_submitted": "2023-10-01",
+          "expiration_date": "2024-10-01",
+          "certificate_url": "http://example.com/certificates/CERT-122",
+          "products": "apple",
+          "tax": 0
+        },
+        {
+          "certId": "CERT-123",
+          "company_name": "Great North Produce",
+          "company_email": "info@greatnorthproduce.ca",
+          "company_phone": "+1-416-555-0123",
+          "company_product": "apple",
+          "product_origin": "Canada",
+          "general_manager": "Ethan Walker",
+          "date_issue": "2023-10-03",
+          "certificate_id_number": "CAN-123",
+          "status": "Approved",
+          "date_submitted": "2023-10-02",
+          "expiration_date": "2024-10-02",
+          "certificate_url": "http://example.com/certificates/CERT-123",
+          "products": "apple",
+          "tax": 0
+        },
+        {
+          "certId": "CERT-124",
+          "company_name": "True North Organics",
+          "company_email": "contact@truenorthorganics.ca",
+          "company_phone": "+1-416-555-0124",
+          "company_product": "apple",
+          "product_origin": "Canada",
+          "general_manager": "Olivia Clark",
+          "date_issue": "2023-10-04",
+          "certificate_id_number": "CAN-124",
+          "status": "Approved",
+          "date_submitted": "2023-10-03",
+          "expiration_date": "2024-10-03",
+          "certificate_url": "http://example.com/certificates/CERT-124",
+          "products": "apple",
+          "tax": 0
+        }
+      ]
+    },
+    {
+      "chartName": "Chocolate",
+      "qr": "chocolate.png",
+      "chartData": [
+        { "month": "January", "product": 180 },
+        { "month": "February", "product": 60 },
+        { "month": "March", "product": 130 },
+        { "month": "April", "product": 95 },
+        { "month": "May", "product": 140 },
+        { "month": "June", "product": 85 }
+      ],
+      "productInsights": "Chocolate: Stable performance with occasional supply fluctuations requiring monitoring.",
+      "batches": [
+        {
+          "id": "A",
+          "label": "Batch A",
+          "products": [
+            {
+              "name": "Product 1",
+              "expiryDescription": "Expires in 5 days",
+              "dateRange": "Day 1 - Day 5",
+              "duration": "5 days",
+              "progress": 60
+            },
+            {
+              "name": "Product 2",
+              "expiryDescription": "Expires in 6 days",
+              "dateRange": "Day 2 - Day 7",
+              "duration": "6 days",
+              "progress": 40
+            }
+          ]
+        },
+        {
+          "id": "B",
+          "label": "Batch B",
+          "products": [
+            {
+              "name": "Product 3",
+              "expiryDescription": "Expires in 15 days",
+              "dateRange": "Day 8 - Day 22",
+              "duration": "15 days",
+              "progress": 75
+            },
+            {
+              "name": "Product 4",
+              "expiryDescription": "Expires in 14 days",
+              "dateRange": "Day 7 - Day 20",
+              "duration": "14 days",
+              "progress": 50
+            }
+          ]
+        }
+      ],
+      "suppliers": [
+        {
+          "certId": "CERT-004",
+          "company_name": "Olivia Wilson Ltd.",
+          "company_email": "contact@oliviawilsonltd.com",
+          "company_phone": "+1-555-0104",
+          "company_product": "apple",
+          "product_origin": "US",
+          "general_manager": "Olivia Wilson",
+          "date_issue": "2023-04-10",
+          "certificate_id_number": "APPL-45678",
+          "status": "Approved",
+          "date_submitted": "2023-04-08",
+          "expiration_date": "2024-04-08",
+          "certificate_url": "http://example.com/certificates/CERT-004",
+          "products": "apple",
+          "tax": 25
+        },
+        {
+          "certId": "CERT-005",
+          "company_name": "William Johnson Enterprises",
+          "company_email": "info@wjenterprises.com",
+          "company_phone": "+1-555-0105",
+          "company_product": "apple",
+          "product_origin": "US",
+          "general_manager": "William Johnson",
+          "date_issue": "2023-05-15",
+          "certificate_id_number": "APPL-56789",
+          "status": "Approved",
+          "date_submitted": "2023-05-12",
+          "expiration_date": "2024-05-12",
+          "certificate_url": "http://example.com/certificates/CERT-005",
+          "products": "apple",
+          "tax": 25
+        },
+        {
+          "certId": "CERT-006",
+          "company_name": "Sophia Martin Corp.",
+          "company_email": "contact@sophiamartincorp.ca",
+          "company_phone": "+1-555-0106",
+          "company_product": "apple",
+          "product_origin": "Canada",
+          "general_manager": "Sophia Martin",
+          "date_issue": "2023-06-20",
+          "certificate_id_number": "APPL-67890",
+          "status": "Approved",
+          "date_submitted": "2023-06-18",
+          "expiration_date": "2024-06-18",
+          "certificate_url": "http://example.com/certificates/CERT-006",
+          "products": "apple",
+          "tax": 0
+        },
+        {
+          "certId": "CERT-007",
+          "company_name": "Liam Thompson Ltd.",
+          "company_email": "info@liamthompsonltd.ca",
+          "company_phone": "+1-555-0107",
+          "company_product": "apple",
+          "product_origin": "Canada",
+          "general_manager": "Liam Thompson",
+          "date_issue": "2023-07-05",
+          "certificate_id_number": "APPL-78901",
+          "status": "Approved",
+          "date_submitted": "2023-07-03",
+          "expiration_date": "2024-07-03",
+          "certificate_url": "http://example.com/certificates/CERT-007",
+          "products": "apple",
+          "tax": 0
+        }
+      ],
+      "alternative_suppliers": [
+        {
+          "certId": "CERT-125",
+          "company_name": "Maple Harvest Foods",
+          "company_email": "info@mapleharvestfoods.ca",
+          "company_phone": "+1-416-555-0125",
+          "company_product": "apple",
+          "product_origin": "Canada",
+          "general_manager": "Benjamin Wright",
+          "date_issue": "2023-10-05",
+          "certificate_id_number": "CAN-125",
+          "status": "Approved",
+          "date_submitted": "2023-10-04",
+          "expiration_date": "2024-10-04",
+          "certificate_url": "http://example.com/certificates/CERT-125",
+          "products": "apple",
+          "tax": 0
+        },
+        {
+          "certId": "CERT-126",
+          "company_name": "Prairie Gold Suppliers",
+          "company_email": "contact@prairiegold.ca",
+          "company_phone": "+1-416-555-0126",
+          "company_product": "apple",
+          "product_origin": "Canada",
+          "general_manager": "Emma Harris",
+          "date_issue": "2023-10-06",
+          "certificate_id_number": "CAN-126",
+          "status": "Approved",
+          "date_submitted": "2023-10-05",
+          "expiration_date": "2024-10-05",
+          "certificate_url": "http://example.com/certificates/CERT-126",
+          "products": "apple",
+          "tax": 0
+        },
+        {
+          "certId": "CERT-127",
+          "company_name": "Aurora Fresh Produce",
+          "company_email": "info@aurorafresh.ca",
+          "company_phone": "+1-416-555-0127",
+          "company_product": "apple",
+          "product_origin": "Canada",
+          "general_manager": "Daniel Scott",
+          "date_issue": "2023-10-07",
+          "certificate_id_number": "CAN-127",
+          "status": "Approved",
+          "date_submitted": "2023-10-06",
+          "expiration_date": "2024-10-06",
+          "certificate_url": "http://example.com/certificates/CERT-127",
+          "products": "apple",
+          "tax": 0
+        },
+        {
+          "certId": "CERT-128",
+          "company_name": "Glacial Foods Ltd.",
+          "company_email": "contact@glacialfoods.ca",
+          "company_phone": "+1-416-555-0128",
+          "company_product": "apple",
+          "product_origin": "Canada",
+          "general_manager": "Sophia Young",
+          "date_issue": "2023-10-08",
+          "certificate_id_number": "CAN-128",
+          "status": "Approved",
+          "date_submitted": "2023-10-07",
+          "expiration_date": "2024-10-07",
+          "certificate_url": "http://example.com/certificates/CERT-128",
+          "products": "apple",
+          "tax": 0
+        },
+        {
+          "certId": "CERT-129",
+          "company_name": "Red Maple Traders",
+          "company_email": "info@redmapletraders.ca",
+          "company_phone": "+1-416-555-0129",
+          "company_product": "apple",
+          "product_origin": "Canada",
+          "general_manager": "Noah King",
+          "date_issue": "2023-10-09",
+          "certificate_id_number": "CAN-129",
+          "status": "Approved",
+          "date_submitted": "2023-10-08",
+          "expiration_date": "2024-10-08",
+          "certificate_url": "http://example.com/certificates/CERT-129",
+          "products": "apple",
+          "tax": 0
+        }
+      ]
+    },
+    {
+      "chartName": "Steak",
+      "qr": "steak.png",
+      "chartData": [
+        { "month": "January", "product": 120 },
+        { "month": "February", "product": 80 },
+        { "month": "March", "product": 140 },
+        { "month": "April", "product": 90 },
+        { "month": "May", "product": 60 },
+        { "month": "June", "product": 110 }
+      ],
+      "productInsights": "Steak: Premium quality with lower volumes, leading to high customer satisfaction.",
+      "batches": [
+        {
+          "id": "A",
+          "label": "Batch A",
+          "products": [
+            {
+              "name": "Product 1",
+              "expiryDescription": "Expires in 7 days",
+              "dateRange": "Day 1 - Day 7",
+              "duration": "7 days",
+              "progress": 70
+            },
+            {
+              "name": "Product 2",
+              "expiryDescription": "Expires in 8 days",
+              "dateRange": "Day 2 - Day 9",
+              "duration": "8 days",
+              "progress": 65
+            }
+          ]
+        },
+        {
+          "id": "B",
+          "label": "Batch B",
+          "products": [
+            {
+              "name": "Product 3",
+              "expiryDescription": "Expires in 16 days",
+              "dateRange": "Day 10 - Day 25",
+              "duration": "16 days",
+              "progress": 40
+            },
+            {
+              "name": "Product 4",
+              "expiryDescription": "Expires in 15 days",
+              "dateRange": "Day 5 - Day 20",
+              "duration": "15 days",
+              "progress": 55
+            }
+          ]
+        }
+      ],
+      "suppliers": [
+        {
+          "certId": "CERT-008",
+          "company_name": "Emma Davis Trading",
+          "company_email": "contact@emmadavistrading.ca",
+          "company_phone": "+1-555-0108",
+          "company_product": "apple",
+          "product_origin": "Canada",
+          "general_manager": "Emma Davis",
+          "date_issue": "2023-08-10",
+          "certificate_id_number": "APPL-89012",
+          "status": "Approved",
+          "date_submitted": "2023-08-08",
+          "expiration_date": "2024-08-08",
+          "certificate_url": "http://example.com/certificates/CERT-008",
+          "products": "apple",
+          "tax": 0
+        },
+        {
+          "certId": "CERT-009",
+          "company_name": "Noah Wilson Imports",
+          "company_email": "info@noahwilsonimports.com",
+          "company_phone": "+1-555-0109",
+          "company_product": "apple",
+          "product_origin": "Mexico",
+          "general_manager": "Noah Wilson",
+          "date_issue": "2023-09-15",
+          "certificate_id_number": "APPL-90123",
+          "status": "Approved",
+          "date_submitted": "2023-09-13",
+          "expiration_date": "2024-09-13",
+          "certificate_url": "http://example.com/certificates/CERT-009",
+          "products": "apple",
+          "tax": 15
+        },
+        {
+          "certId": "CERT-010",
+          "company_name": "Ava Brown Enterprises",
+          "company_email": "contact@avabrownenterprises.de",
+          "company_phone": "+49-30-123456",
+          "company_product": "apple",
+          "product_origin": "Germany",
+          "general_manager": "Ava Brown",
+          "date_issue": "2023-10-20",
+          "certificate_id_number": "APPL-01234",
+          "status": "Approved",
+          "date_submitted": "2023-10-18",
+          "expiration_date": "2024-10-18",
+          "certificate_url": "http://example.com/certificates/CERT-010",
+          "products": "apple",
+          "tax": 15
+        }
+      ],
+      "alternative_suppliers": [
+        {
+          "certId": "CERT-130",
+          "company_name": "Cedar Ridge Produce",
+          "company_email": "contact@cedarridge.ca",
+          "company_phone": "+1-416-555-0130",
+          "company_product": "apple",
+          "product_origin": "Canada",
+          "general_manager": "Ava Martinez",
+          "date_issue": "2023-10-10",
+          "certificate_id_number": "CAN-130",
+          "status": "Approved",
+          "date_submitted": "2023-10-09",
+          "expiration_date": "2024-10-09",
+          "certificate_url": "http://example.com/certificates/CERT-130",
+          "products": "apple",
+          "tax": 0
+        },
+        {
+          "certId": "CERT-131",
+          "company_name": "Northern Lights Foods",
+          "company_email": "info@northernlightsfoods.ca",
+          "company_phone": "+1-416-555-0131",
+          "company_product": "apple",
+          "product_origin": "Canada",
+          "general_manager": "Logan Robinson",
+          "date_issue": "2023-10-11",
+          "certificate_id_number": "CAN-131",
+          "status": "Approved",
+          "date_submitted": "2023-10-10",
+          "expiration_date": "2024-10-10",
+          "certificate_url": "http://example.com/certificates/CERT-131",
+          "products": "apple",
+          "tax": 0
+        },
+        {
+          "certId": "CERT-132",
+          "company_name": "Iceberg Distribution",
+          "company_email": "contact@icebergdistribution.ca",
+          "company_phone": "+1-416-555-0132",
+          "company_product": "apple",
+          "product_origin": "Canada",
+          "general_manager": "Isabella Lewis",
+          "date_issue": "2023-10-12",
+          "certificate_id_number": "CAN-132",
+          "status": "Approved",
+          "date_submitted": "2023-10-11",
+          "expiration_date": "2024-10-11",
+          "certificate_url": "http://example.com/certificates/CERT-132",
+          "products": "apple",
+          "tax": 0
+        },
+        {
+          "certId": "CERT-133",
+          "company_name": "Aurora Borealis Trading",
+          "company_email": "info@auroraborealis.ca",
+          "company_phone": "+1-416-555-0133",
+          "company_product": "apple",
+          "product_origin": "Canada",
+          "general_manager": "James Walker",
+          "date_issue": "2023-10-13",
+          "certificate_id_number": "CAN-133",
+          "status": "Approved",
+          "date_submitted": "2023-10-12",
+          "expiration_date": "2024-10-12",
+          "certificate_url": "http://example.com/certificates/CERT-133",
+          "products": "apple",
+          "tax": 0
+        },
+        {
+          "certId": "CERT-134",
+          "company_name": "Maple Ridge Suppliers",
+          "company_email": "contact@mapleridgesuppliers.ca",
+          "company_phone": "+1-416-555-0134",
+          "company_product": "apple",
+          "product_origin": "Canada",
+          "general_manager": "Charlotte Evans",
+          "date_issue": "2023-10-14",
+          "certificate_id_number": "CAN-134",
+          "status": "Approved",
+          "date_submitted": "2023-10-13",
+          "expiration_date": "2024-10-13",
+          "certificate_url": "http://example.com/certificates/CERT-134",
+          "products": "apple",
+          "tax": 0
+        }
+      ]
+    },
+    {
+      "chartName": "Milk",
+      "qr": "milk.png",
+      "chartData": [
+        { "month": "January", "product": 130 },
+        { "month": "February", "product": 70 },
+        { "month": "March", "product": 110 },
+        { "month": "April", "product": 95 },
+        { "month": "May", "product": 85 },
+        { "month": "June", "product": 100 }
+      ],
+      "productInsights": "Milk: Steady demand with seasonal variations; inventory levels are well-managed.",
+      "batches": [
+        {
+          "id": "A",
+          "label": "Batch A",
+          "products": [
+            {
+              "name": "Product 1",
+              "expiryDescription": "Expires in 4 days",
+              "dateRange": "Day 1 - Day 4",
+              "duration": "4 days",
+              "progress": 80
+            },
+            {
+              "name": "Product 2",
+              "expiryDescription": "Expires in 5 days",
+              "dateRange": "Day 2 - Day 6",
+              "duration": "5 days",
+              "progress": 60
+            }
+          ]
+        },
+        {
+          "id": "B",
+          "label": "Batch B",
+          "products": [
+            {
+              "name": "Product 3",
+              "expiryDescription": "Expires in 12 days",
+              "dateRange": "Day 7 - Day 18",
+              "duration": "12 days",
+              "progress": 75
+            },
+            {
+              "name": "Product 4",
+              "expiryDescription": "Expires in 10 days",
+              "dateRange": "Day 3 - Day 13",
+              "duration": "10 days",
+              "progress": 50
+            }
+          ]
+        }
+      ],
+      "suppliers": [
+        {
+          "certId": "CERT-011",
+          "company_name": "Robert Anderson Inc.",
+          "company_email": "contact@robertandersoninc.com",
+          "company_phone": "+1-555-0111",
+          "company_product": "banana",
+          "product_origin": "US",
+          "general_manager": "Robert Anderson",
+          "date_issue": "2023-11-01",
+          "certificate_id_number": "BANA-11111",
+          "status": "Approved",
+          "date_submitted": "2023-10-30",
+          "expiration_date": "2024-10-30",
+          "certificate_url": "http://example.com/certificates/CERT-011",
+          "products": "banana",
+          "tax": 25
+        },
+        {
+          "certId": "CERT-012",
+          "company_name": "Patricia Miller Co.",
+          "company_email": "info@patriciamillerco.com",
+          "company_phone": "+1-555-0112",
+          "company_product": "banana",
+          "product_origin": "US",
+          "general_manager": "Patricia Miller",
+          "date_issue": "2023-11-05",
+          "certificate_id_number": "BANA-22222",
+          "status": "Approved",
+          "date_submitted": "2023-11-03",
+          "expiration_date": "2024-11-03",
+          "certificate_url": "http://example.com/certificates/CERT-012",
+          "products": "banana",
+          "tax": 25
+        },
+        {
+          "certId": "CERT-013",
+          "company_name": "Steven Johnson Ltd.",
+          "company_email": "contact@stevenjohnsonltd.com",
+          "company_phone": "+1-555-0113",
+          "company_product": "banana",
+          "product_origin": "US",
+          "general_manager": "Steven Johnson",
+          "date_issue": "2023-11-10",
+          "certificate_id_number": "BANA-33333",
+          "status": "Approved",
+          "date_submitted": "2023-11-08",
+          "expiration_date": "2024-11-08",
+          "certificate_url": "http://example.com/certificates/CERT-013",
+          "products": "banana",
+          "tax": 25
+        },
+        {
+          "certId": "CERT-014",
+          "company_name": "Linda Davis Trading",
+          "company_email": "info@lindadavistrading.com",
+          "company_phone": "+1-555-0114",
+          "company_product": "banana",
+          "product_origin": "US",
+          "general_manager": "Linda Davis",
+          "date_issue": "2023-11-15",
+          "certificate_id_number": "BANA-44444",
+          "status": "Approved",
+          "date_submitted": "2023-11-13",
+          "expiration_date": "2024-11-13",
+          "certificate_url": "http://example.com/certificates/CERT-014",
+          "products": "banana",
+          "tax": 25
+        }
+      ],
+      "alternative_suppliers": [
+        {
+          "certId": "CERT-135",
+          "company_name": "True North Fresh",
+          "company_email": "info@truenorthfresh.ca",
+          "company_phone": "+1-416-555-0135",
+          "company_product": "apple",
+          "product_origin": "Canada",
+          "general_manager": "Alexander Parker",
+          "date_issue": "2023-10-15",
+          "certificate_id_number": "CAN-135",
+          "status": "Approved",
+          "date_submitted": "2023-10-14",
+          "expiration_date": "2024-10-14",
+          "certificate_url": "http://example.com/certificates/CERT-135",
+          "products": "apple",
+          "tax": 0
+        },
+        {
+          "certId": "CERT-136",
+          "company_name": "Rocky Mountain Organics",
+          "company_email": "contact@rockymountainorganics.ca",
+          "company_phone": "+1-416-555-0136",
+          "company_product": "apple",
+          "product_origin": "Canada",
+          "general_manager": "Amelia Rivera",
+          "date_issue": "2023-10-16",
+          "certificate_id_number": "CAN-136",
+          "status": "Approved",
+          "date_submitted": "2023-10-15",
+          "expiration_date": "2024-10-15",
+          "certificate_url": "http://example.com/certificates/CERT-136",
+          "products": "apple",
+          "tax": 0
+        },
+        {
+          "certId": "CERT-137",
+          "company_name": "Prairie Sky Produce",
+          "company_email": "info@prairieskyproduce.ca",
+          "company_phone": "+1-416-555-0137",
+          "company_product": "apple",
+          "product_origin": "Canada",
+          "general_manager": "Benjamin Carter",
+          "date_issue": "2023-10-17",
+          "certificate_id_number": "CAN-137",
+          "status": "Approved",
+          "date_submitted": "2023-10-16",
+          "expiration_date": "2024-10-16",
+          "certificate_url": "http://example.com/certificates/CERT-137",
+          "products": "apple",
+          "tax": 0
+        },
+        {
+          "certId": "CERT-138",
+          "company_name": "Glacial Edge Foods",
+          "company_email": "contact@glacialedgefoods.ca",
+          "company_phone": "+1-416-555-0138",
+          "company_product": "apple",
+          "product_origin": "Canada",
+          "general_manager": "Victoria Brooks",
+          "date_issue": "2023-10-18",
+          "certificate_id_number": "CAN-138",
+          "status": "Approved",
+          "date_submitted": "2023-10-17",
+          "expiration_date": "2024-10-17",
+          "certificate_url": "http://example.com/certificates/CERT-138",
+          "products": "apple",
+          "tax": 0
+        },
+        {
+          "certId": "CERT-139",
+          "company_name": "Maple Crown Distributors",
+          "company_email": "info@maplecrowndistributors.ca",
+          "company_phone": "+1-416-555-0139",
+          "company_product": "apple",
+          "product_origin": "Canada",
+          "general_manager": "Christopher Reed",
+          "date_issue": "2023-10-19",
+          "certificate_id_number": "CAN-139",
+          "status": "Approved",
+          "date_submitted": "2023-10-18",
+          "expiration_date": "2024-10-18",
+          "certificate_url": "http://example.com/certificates/CERT-139",
+          "products": "apple",
+          "tax": 0
+        },
+        {
+          "certId": "CERT-140",
+          "company_name": "Northern Summit Foods",
+          "company_email": "contact@northernsummitfoods.ca",
+          "company_phone": "+1-416-555-0140",
+          "company_product": "apple",
+          "product_origin": "Canada",
+          "general_manager": "Madison Hughes",
+          "date_issue": "2023-10-20",
+          "certificate_id_number": "CAN-140",
+          "status": "Approved",
+          "date_submitted": "2023-10-19",
+          "expiration_date": "2024-10-19",
+          "certificate_url": "http://example.com/certificates/CERT-140",
+          "products": "apple",
+          "tax": 0
+        }
+      ]
+    },
+    {
+      "chartName": "Pineapple",
+      "qr": "",
+      "chartData": [
+        { "month": "January", "product": 160 },
+        { "month": "February", "product": 90 },
+        { "month": "March", "product": 150 },
+        { "month": "April", "product": 120 },
+        { "month": "May", "product": 100 },
+        { "month": "June", "product": 130 }
+      ],
+      "productInsights": "Pineapple: Strong growth with extended shelf life and low waste levels.",
+      "batches": [
+        {
+          "id": "A",
+          "label": "Batch A",
+          "products": [
+            {
+              "name": "Product 1",
+              "expiryDescription": "Expires in 10 days",
+              "dateRange": "Day 1 - Day 10",
+              "duration": "10 days",
+              "progress": 90
+            },
+            {
+              "name": "Product 2",
+              "expiryDescription": "Expires in 11 days",
+              "dateRange": "Day 2 - Day 12",
+              "duration": "11 days",
+              "progress": 85
+            }
+          ]
+        },
+        {
+          "id": "B",
+          "label": "Batch B",
+          "products": [
+            {
+              "name": "Product 3",
+              "expiryDescription": "Expires in 20 days",
+              "dateRange": "Day 10 - Day 30",
+              "duration": "20 days",
+              "progress": 65
+            },
+            {
+              "name": "Product 4",
+              "expiryDescription": "Expires in 18 days",
+              "dateRange": "Day 5 - Day 22",
+              "duration": "18 days",
+              "progress": 70
+            }
+          ]
+        }
+      ],
+      "suppliers": [
+        {
+          "certId": "CERT-015",
+          "company_name": "Mark Wilson Enterprises",
+          "company_email": "contact@markwilsonenterprises.com",
+          "company_phone": "+1-555-0115",
+          "company_product": "banana",
+          "product_origin": "US",
+          "general_manager": "Mark Wilson",
+          "date_issue": "2023-11-20",
+          "certificate_id_number": "BANA-55555",
+          "status": "Approved",
+          "date_submitted": "2023-11-18",
+          "expiration_date": "2024-11-18",
+          "certificate_url": "http://example.com/certificates/CERT-015",
+          "products": "banana",
+          "tax": 25
+        },
+        {
+          "certId": "CERT-016",
+          "company_name": "Laura Thompson Corp.",
+          "company_email": "info@laurathompsoncorp.ca",
+          "company_phone": "+1-555-0116",
+          "company_product": "banana",
+          "product_origin": "Canada",
+          "general_manager": "Laura Thompson",
+          "date_issue": "2023-11-25",
+          "certificate_id_number": "BANA-66666",
+          "status": "Approved",
+          "date_submitted": "2023-11-23",
+          "expiration_date": "2024-11-23",
+          "certificate_url": "http://example.com/certificates/CERT-016",
+          "products": "banana",
+          "tax": 0
+        },
+        {
+          "certId": "CERT-017",
+          "company_name": "Kevin Martin Ltd.",
+          "company_email": "contact@kevinmartinltd.ca",
+          "company_phone": "+1-555-0117",
+          "company_product": "banana",
+          "product_origin": "Canada",
+          "general_manager": "Kevin Martin",
+          "date_issue": "2023-11-30",
+          "certificate_id_number": "BANA-77777",
+          "status": "Approved",
+          "date_submitted": "2023-11-28",
+          "expiration_date": "2024-11-28",
+          "certificate_url": "http://example.com/certificates/CERT-017",
+          "products": "banana",
+          "tax": 0
+        },
+        {
+          "certId": "CERT-018",
+          "company_name": "Barbara White Inc.",
+          "company_email": "info@barbarawhiteinc.ca",
+          "company_phone": "+1-555-0118",
+          "company_product": "banana",
+          "product_origin": "Canada",
+          "general_manager": "Barbara White",
+          "date_issue": "2023-12-05",
+          "certificate_id_number": "BANA-88888",
+          "status": "Approved",
+          "date_submitted": "2023-12-03",
+          "expiration_date": "2024-12-03",
+          "certificate_url": "http://example.com/certificates/CERT-018",
+          "products": "banana",
+          "tax": 0
+        },
+        {
+          "certId": "CERT-019",
+          "company_name": "Daniel Garcia Trading",
+          "company_email": "contact@danielgarciatrading.com",
+          "company_phone": "+52-555-0120",
+          "company_product": "banana",
+          "product_origin": "Mexico",
+          "general_manager": "Daniel Garcia",
+          "date_issue": "2023-12-10",
+          "certificate_id_number": "BANA-99999",
+          "status": "Approved",
+          "date_submitted": "2023-12-08",
+          "expiration_date": "2024-12-08",
+          "certificate_url": "http://example.com/certificates/CERT-019",
+          "products": "banana",
+          "tax": 15
+        },
+        {
+          "certId": "CERT-020",
+          "company_name": "Samantha Lee Enterprises",
+          "company_email": "info@samanthaleeenterprises.de",
+          "company_phone": "+49-30-234567",
+          "company_product": "banana",
+          "product_origin": "Germany",
+          "general_manager": "Samantha Lee",
+          "date_issue": "2023-12-15",
+          "certificate_id_number": "BANA-10101",
+          "status": "Approved",
+          "date_submitted": "2023-12-13",
+          "expiration_date": "2024-12-13",
+          "certificate_url": "http://example.com/certificates/CERT-020",
+          "products": "banana",
+          "tax": 15
+        }
+      ],
+      "alternative_suppliers": [
+        {
+          "certId": "CERT-141",
+          "company_name": "Evergreen Produce Ltd.",
+          "company_email": "info@evergreenproduce.ca",
+          "company_phone": "+1-416-555-0141",
+          "company_product": "apple",
+          "product_origin": "Canada",
+          "general_manager": "Evelyn Murphy",
+          "date_issue": "2023-10-21",
+          "certificate_id_number": "CAN-141",
+          "status": "Approved",
+          "date_submitted": "2023-10-20",
+          "expiration_date": "2024-10-20",
+          "certificate_url": "http://example.com/certificates/CERT-141",
+          "products": "apple",
+          "tax": 0
+        },
+        {
+          "certId": "CERT-142",
+          "company_name": "Maple Leaf Foods",
+          "company_email": "contact@mapleleaffoods.ca",
+          "company_phone": "+1-416-555-0142",
+          "company_product": "apple",
+          "product_origin": "Canada",
+          "general_manager": "Henry Collins",
+          "date_issue": "2023-10-22",
+          "certificate_id_number": "CAN-142",
+          "status": "Approved",
+          "date_submitted": "2023-10-21",
+          "expiration_date": "2024-10-21",
+          "certificate_url": "http://example.com/certificates/CERT-142",
+          "products": "apple",
+          "tax": 0
+        },
+        {
+          "certId": "CERT-143",
+          "company_name": "True North Supplies",
+          "company_email": "info@truenorthsupplies.ca",
+          "company_phone": "+1-416-555-0143",
+          "company_product": "apple",
+          "product_origin": "Canada",
+          "general_manager": "Mason Lee",
+          "date_issue": "2023-10-23",
+          "certificate_id_number": "CAN-143",
+          "status": "Approved",
+          "date_submitted": "2023-10-22",
+          "expiration_date": "2024-10-22",
+          "certificate_url": "http://example.com/certificates/CERT-143",
+          "products": "apple",
+          "tax": 0
+        },
+        {
+          "certId": "CERT-144",
+          "company_name": "Aurora Organics",
+          "company_email": "contact@auroraorganics.ca",
+          "company_phone": "+1-416-555-0144",
+          "company_product": "apple",
+          "product_origin": "Canada",
+          "general_manager": "Isabella Turner",
+          "date_issue": "2023-10-24",
+          "certificate_id_number": "CAN-144",
+          "status": "Approved",
+          "date_submitted": "2023-10-23",
+          "expiration_date": "2024-10-23",
+          "certificate_url": "http://example.com/certificates/CERT-144",
+          "products": "apple",
+          "tax": 0
+        },
+        {
+          "certId": "CERT-145",
+          "company_name": "Northern Harvest Inc.",
+          "company_email": "info@northernharvestinc.ca",
+          "company_phone": "+1-416-555-0145",
+          "company_product": "apple",
+          "product_origin": "Canada",
+          "general_manager": "Olivia Bennett",
+          "date_issue": "2023-10-25",
+          "certificate_id_number": "CAN-145",
+          "status": "Approved",
+          "date_submitted": "2023-10-24",
+          "expiration_date": "2024-10-24",
+          "certificate_url": "http://example.com/certificates/CERT-145",
+          "products": "apple",
+          "tax": 0
+        }
+      ]
+    }
+  ]
+}
