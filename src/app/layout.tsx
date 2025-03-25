@@ -17,7 +17,7 @@ export const metadata: Metadata = {
         ? `https://${process.env.VERCEL_URL}`
         : `http://localhost:${process.env.PORT || 3000}`
   ),
-  title: "deep.food",
+  title: "datatrace",
   description:
     "An innovative, cloud-based platform for the food industry that leverages real-time data analytics and POS integration to optimize inventory management, reduce waste, and boost sustainability.",
   icons: {
@@ -28,16 +28,16 @@ export const metadata: Metadata = {
   },
   openGraph: {
     url: "/",
-    title: "deep.food",
+    title: "datatrace",
     description:
-      "deep.food is a revolutionary sustainability solution for restaurants, supermarkets, and food manufacturers. It harnesses real-time data and machine learning to streamline operations and cut down food waste.",
+      "datatrace is a revolutionary sustainability solution for restaurants, supermarkets, and food manufacturers. It harnesses real-time data and machine learning to streamline operations and cut down food waste.",
     type: "website"
   },
   twitter: {
     card: "summary_large_image",
-    title: "deep.food",
+    title: "datatrace",
     description:
-      "Discover deep.food – a cutting-edge platform that uses real-time analytics and AI to optimize food inventory and drive sustainability in the food industry."
+      "Discover datatrace – a cutting-edge platform that uses real-time analytics and AI to optimize food inventory and drive sustainability in the food industry."
   }
 };
 

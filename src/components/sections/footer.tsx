@@ -11,7 +11,7 @@ export const FooterSection = () => {
               {/* <LeafyGreen className="w-9 h-9 mr-2 bg-gradient-to-tr from-primary via-primary/70 to-primary rounded-lg border border-secondary" /> */}
               <LeafyGreen className="w-9 h-9 mr-2 from-primary via-primary/70 to-primary rounded-lg" />
 
-              <h3 className="text-2xl">deep.food</h3>
+              <h3 className="text-2xl">datatrace</h3>
             </Link>
           </div>
 

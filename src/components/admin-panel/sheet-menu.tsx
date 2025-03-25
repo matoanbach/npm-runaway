@@ -28,7 +28,7 @@ export function SheetMenu() {
           >
             <Link href="/" className="flex items-center gap-2">
               <LeafyGreen className="w-6 h-6 mr-1" />
-              <SheetTitle className="font-bold text-lg">deep.food</SheetTitle>
+              <SheetTitle className="font-bold text-lg">datatrace</SheetTitle>
             </Link>
           </Button>
         </SheetHeader>

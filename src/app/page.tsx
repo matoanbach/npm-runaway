@@ -29,8 +29,8 @@ export default function HomePage() {
             className="flex justify-start items-center hover:opacity-85 transition-opacity duration-300"
           >
             <LeafyGreen className="w-6 h-6 mr-3" />
-            <span className="font-bold">deep.food</span>
-            <span className="sr-only">deep.food</span>
+            <span className="font-bold">datatrace</span>
+            <span className="sr-only">datatrace</span>
           </Link>
           <nav className="ml-auto flex items-center gap-2">
             <Button
