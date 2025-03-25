@@ -58,10 +58,10 @@ export function ResponsiveTableComponent() {
                                 <TableCell className="hidden sm:table-cell">{cert.products}</TableCell>
                                 <TableCell
                                     className={`${cert.status === "Approved"
-                                        ? "text-green-900"
+                                        ? "text-green-500 dark:text-green-400"
                                         : cert.status === "Rejected"
-                                            ? "text-red-400"
-                                            : "text-yellow-600"
+                                            ? "text-red-500 dark:text-red-400"
+                                            : "text-yellow-500 darl:text-yellow-400"
                                         }`}>
                                     {cert.status}
                                 </TableCell>                <TableCell className="hidden sm:table-cell">{cert.date_submitted}</TableCell>

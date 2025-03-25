@@ -15,7 +15,7 @@ metadata:
 spec:
   ingressClassName: "nginx"  # Or "alb", etc.
   rules:
-  - host: "appv2.leetyap.com"
+  - host: "datatrace.cloud"
     http:
       paths:
       - pathType: Prefix
