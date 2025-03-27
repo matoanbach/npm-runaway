@@ -1,249 +1,160 @@
-# Run the project locally
+# DeepFood Frontend
 
-**note:** `prequisite` to run locally: node - v23.1.0 or v22^
+DeepFood Frontend is part of our hackathon project for a Data Analytics + POS SaaS solution. Designed for restaurants, catering services, supermarkets, grocery chains, and food manufacturers, this cloud-based platform integrates with various ERP systems (e.g., SAP, Oracle, Microsoft Dynamics, Odoo) to deliver real-time inventory monitoring, sales analytics, demand forecasting, and more.
 
-1. If you are joining, then download or clone this repo
+---
 
-- If you are buidling from scratch, download template down: - `Shadcn template`: https://github.com/salimi-my/shadcn-ui-sidebar?tab=readme-ov-file
+## Prerequisites
 
-2. Run
+- `Node.js`: v23.1.0 or v22.x (ensure one of these versions is installed)
+- `Docker`: (if you plan to run the project in a containerized environment)
 
-```bash
-npm install
-```
+---
 
-**note:** if too many warnings and errors, run "npm install --force"
+## Running the Project Locally
 
-```bash
-npm run dev
-```
+### 1. Clone the Repository
 
-3. Build a new release for the project
+- For joining an existing project: `git clone [repository_url]`
 
-```bash
-rpm run build
-```
+- For building from scratch using the Shadcn template: `git clone https://github.com/salimi-my/shadcn-ui-sidebar?tab=readme-ov-file`
 
-```bash
-rpm run start
-```
+### 2. Install Dependencies
 
-# Run the project locally with Docker
+Navigate to the project directory and run: `npm install`
 
-## 1. Dockerize the project
+Note: If you encounter multiple warnings or errors, try running: `npm install --force`
 
-### Hold on, what's image and what's container
+### 3. Start the Development Server
 
-- `Image` is a template to make a `Container`.
-- A `Container` is an instance of an `Image` or created by an `Image`. Hear me out: you can make many containers with one image.
-- We don't move containers around to different machines, but we do for an Image. A developer on Mars will download that image and make a container running their own machine
+Launch the development environment with: `npm run dev`
 
-### Dockerfile
+### 4. Build and Run a Production Release
+
+To create a production build: `npm run build`
+
+Then start the application: `npm run start`
+
+---
+
+## Running the Project with Docker
+
+### 1. Dockerize the Project
+
+#### Understanding Docker Concepts
+
+- Image: A template used to create containers.
+- Container: A runtime instance of an image. Multiple containers can be created from a single image.
+
+#### Dockerfile
+
+Here’s an example Dockerfile:
 
 ```Dockerfile
 FROM node:23-alpine
 
 WORKDIR /app
 
-COPY package*.json ./
-
+COPY package\*.json ./
 RUN npm install
 
 COPY . .
-
 RUN npm run build
 
 ENV PORT=3000
-
 EXPOSE 3000
 
 CMD ["npm", "run", "start"]
 ```
 
-### Build an image
+#### Build the Docker Image
 
-```bash
-docker build -t [TAG]:[RELEASE_VERSION] .
-# e.g:
-docker build -t toan/deepfood-frontend:0.1 .
-```
+From the project directory, run: `docker build -t toan/deepfood-frontend:0.1 .`
 
-```bash
-# output:
-(base) tieuma@Tieus-MacBook-Pro deepfood-frontend % docker build -t toan/deepfood-frontend:0.1 .
-[+] Building 80.3s (12/12) FINISHED                                                                docker:desktop-linux
- => [internal] load build definition from Dockerfile                                                               0.0s
- => => transferring dockerfile: 198B                                                                               0.0s
- => [internal] load metadata for docker.io/library/node:23-alpine                                                  1.0s
- => [auth] library/node:pull token for registry-1.docker.io                                                        0.0s
- => [internal] load .dockerignore                                                                                  0.0s
- => => transferring context: 2B                                                                                    0.0s
- => [1/6] FROM docker.io/library/node:23-alpine@sha256:35e9e23734fdf61fc9315889c2993bb1a94ae5886cf5c025f27103e2b  10.9s
- => => resolve docker.io/library/node:23-alpine@sha256:35e9e23734fdf61fc9315889c2993bb1a94ae5886cf5c025f27103e2b0  0.0s
- => => sha256:d7c3ad73eddeaa776d97ee4d4e479c888ffecc982faf879ed2a97d7648cd26e5 1.26MB / 1.26MB                     0.4s
- => => sha256:f20af421d4b24027e2d9ce13922e93fa6f8afdae4da20928818b8e888bb6afe3 50.76MB / 50.76MB                   9.9s
- => => sha256:6c1430d52e2c98af0e97b0c47a4802594c54820997c634edd58a36788488f184 445B / 445B                         0.4s
- => => extracting sha256:f20af421d4b24027e2d9ce13922e93fa6f8afdae4da20928818b8e888bb6afe3                          0.7s
- => => extracting sha256:d7c3ad73eddeaa776d97ee4d4e479c888ffecc982faf879ed2a97d7648cd26e5                          0.1s
- => => extracting sha256:6c1430d52e2c98af0e97b0c47a4802594c54820997c634edd58a36788488f184                          0.0s
- => [internal] load build context                                                                                  4.2s
- => => transferring context: 351.18MB                                                                              3.9s
- => [2/6] WORKDIR /app                                                                                             0.4s
- => [3/6] COPY package*.json ./                                                                                    0.1s
- => [4/6] RUN npm install                                                                                         22.2s
- => [5/6] COPY . .                                                                                                 3.7s
- => [6/6] RUN npm run build                                                                                       18.6s
- => exporting to image                                                                                            23.2s
- => => exporting layers                                                                                           16.1s
- => => exporting manifest sha256:6397f447f713db34b9a24ab3232aad4a239b2a0e4c9a890d9b21ee8e5cd4a12e                  0.0s
- => => exporting config sha256:4114900deb58071299810951809c27533baf1319c10ec9b5533193a46e510373                    0.0s
- => => exporting attestation manifest sha256:9a0a0fe9300fce343ee2342004908241bea3a6ec4855d5e6d04998bf7528f24e      0.0s
- => => exporting manifest list sha256:eda1c746beab759a25768ff87fe2994183580a8667b06795ced9e200252a39b8             0.0s
- => => naming to docker.io/toan/deepfood-frontend:0.1                                                              0.0s
- => => unpacking to docker.io/toan/deepfood-frontend:0.1                                                           6.9s
+Example output details the steps and final image creation.
 
-View build details: docker-desktop://dashboard/build/desktop-linux/desktop-linux/nrq2f6mq0yirtb9gpkf434qfw
-```
+#### Verify the Docker Image
 
-### Find the image on your machine
+List your Docker images with: `docker images`
 
-```bash
-(base) tieuma@Tieus-MacBook-Pro deepfood-frontend % docker images
-REPOSITORY               TAG         IMAGE ID       CREATED          SIZE
-toan/deepfood-frontend   0.1         eda1c746beab   28 seconds ago   1.85GB
-simplebank               1.0         bc5d67956890   2 weeks ago      34.5MB
-postgres                 17-alpine   c4c3cded2248   3 weeks ago      385MB
-```
+#### Run the Docker Container
 
-### Run the image
+To run the image as a container: `docker run -p 3000:3000 [IMAGE_NAME_OR_ID]`
 
-**Note:**: when we run an image, we just made a container
+Replace [IMAGE_NAME_OR_ID] with your image tag or ID (e.g., eda1c746beab).
 
-```bash
-docker run -p [MACHINE_PORT]:[CONTAINER_PORT] [IMAGE NAME/ID]
-# e.g:
-docker run -p 3000:3000 eda1c746beab
-```
+#### Manage Docker Containers
 
-### Find the container
+- List Running Containers: `docker ps`
 
-```bash
-docker ps
-# or
-docker ps -a
-```
+- List All Containers (including stopped ones): `docker ps -a`
 
-### Remove a container
+- Remove a Container: `docker rm [CONTAINER_ID]`
 
-```bash
-docker rm [CONTAINER_ID]
-# e.g:
-docker rm 1a669d7d0052
-```
+- Run in Detached Mode: `docker run -d -p 3000:3000 [IMAGE_NAME_OR_ID]`
 
-### Run the image in `DETACH` mode
+- Remove an Image: `docker rmi [IMAGE_ID]`
 
-```bash
-docker run -d -p [MACHINE_PORT]:[CONTAINER_PORT] [IMAGE NAME/ID]
-# e.g:
-docker run -d -p 3000:3000 eda1c746beab
-```
+### 2. Pushing the Docker Image to the Cloud
 
-### Remove an image
+#### Setting Up Credentials
 
-```bash
-docker rm [IMAGE_ID]
-# e.g:
-docker rm asdq1231asd
-```
+Ensure you have the necessary AWS ECR credentials. If your repository is pre-configured, your team should provide the secret keys.
 
-## 2. Push image to cloud (Lets try Amazon ECR this time)
+### 3. Pulling the Docker Image from the Cloud
 
-**Note:** Assume your team has ECR set up, so we just need to authenticate and then push the images from our local machine to Amazon ECR repository.
+#### Configure AWS Credentials
 
-### Set up credential keys
-
-**Note:** If the repository is already there, we assume the secrets are set up for us already, so `ignore` this part.
-
-**Note:** Ask your team to give you this set of secret keys.
-
-## 3. Pull image from cloud
-
-1. Set up the AWS keys
-
-**Note:** ask your team for these keys
+Set up your AWS credentials (typically in the `~/.aws/credentials` file):
 
 ```yaml
 [default]
-aws_access_key_id = ...
-aws_secret_access_key = ...
+aws_access_key_id = YOUR_ACCESS_KEY
+aws_secret_access_key = YOUR_SECRET_KEY
 
 [github]
-aws_access_key_id = ...
-aws_secret_access_key = ...
+aws_access_key_id = YOUR_GITHUB_ACCESS_KEY
+aws_secret_access_key = YOUR_GITHUB_SECRET_KEY
 ```
 
-2.  Authenticate with AWS CLI
+#### Authenticate with AWS CLI
 
-- For Linux/MacOS, run:
+For Linux/MacOS: `aws ecr get-login-password --region us-east-2 | docker login --username AWS --password-stdin 160885278762.dkr.ecr.us-east-2.amazonaws.com`
 
-```bash
-aws ecr get-login-password --region us-east-2 | docker login --username AWS --password-stdin 160885278762.dkr.ecr.us-east-2.amazonaws.com
-```
+For Windows: `aws ecr list-images --repository-name npm-runaway --region us-east-2`
 
-- For Windows, run:
+#### Pull the Image
 
-```bash
-aws ecr list-images --repository-name npm-runaway --region us-east-2
-```
+Download the image with: `docker image pull 160885278762.dkr.ecr.us-east-2.amazonaws.com/npm-runaway:latest`
 
-```bash
-# Output
-{
-    "imageIds": [
-        {
-            "imageDigest": "sha256:453554a1d3a2a0a08f3a98b28d9dd8190bcd1ecc024462562b4218130a6eabff",
-            "imageTag": "147027fcea98b822f010d90075bfc5d96e95e38a"
-        },
-        {
-            "imageDigest": "sha256:453554a1d3a2a0a08f3a98b28d9dd8190bcd1ecc024462562b4218130a6eabff",
-            "imageTag": "latest"
-        }
-    ]
-}
-```
+#### Run the Container
 
-3. Pull the image down by running:
+Start the container: `docker run -d -p 3000:3000 [IMAGE_NAME_OR_ID]`
+
+---
+
+## Continuous Integration with GitHub Actions
+
+### Setting Up Secret Keys
+
+1. Go to your GitHub repository.
+2. Navigate to `Settings` > `Secrets and Variables` > `Actions`.
+3. Add the required keys:
 
 ```bash
-docker image pull 160885278762.dkr.ecr.us-east-2.amazonaws.com/npm-runaway:latest
-```
-
-3. Run the container
-
-```bash
-docker run -d -p 3000:3000 eda1c746beab 
-```
-
-## 4. Set up Github Actions
-
-### Set up secret keys
-
-1. Go to the `github repository` of this project
-2. Go to `settings` > `Secrets & Variables` > `Actions`
-3. Copy and paste all the neccessary secret keys for `Github Actions` here
-
-```bash
-AWS_ACCESS_KEY=... # optional
-AWS_SECRET_ACCESS_KEY=... # optional
+AWS_ACCESS_KEY=...
+AWS_SECRET_ACCESS_KEY=...
 AWS_ROOT_ACCESS_KEY=...
 AWS_ROOT_SECRET_ACCESS_KEY=...
 ```
 
-### Github Actions config file
+### GitHub Actions Workflow Configuration
+
+Create a file at .github/workflows/deploy.yaml with the following content:
+
+name: Deploy to Production
 
 ```yaml
-# put this this file in your_app/.github/workflows/deploy.yaml
 name: Deploy to production
 
 on:
@@ -286,3 +197,7 @@ jobs:
           docker build -t $REGISTRY/$REPOSITORY:$IMAGE_TAG -t $REGISTRY/$REPOSITORY:latest .
           docker push -a $REGISTRY/$REPOSITORY
 ```
+
+---
+
+For further information or support, please refer to the project documentation or contact the development team.
