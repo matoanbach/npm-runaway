@@ -39,7 +39,7 @@ export default function HomePage() {
               className="rounded-full w-8 h-8 bg-background"
               asChild
             >
-              <Link href="https://github.com/salimi-my/shadcn-ui-sidebar">
+              <Link href="https://github.com/matoanbach/npm-runaway">
                 <GitHubLogoIcon className="h-[1.2rem] w-[1.2rem]" />
               </Link>
             </Button>

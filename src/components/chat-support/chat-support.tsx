@@ -20,7 +20,9 @@ import { useChat } from '@ai-sdk/react';
 
 
 export default function ChatSupport() {
-    const { messages, input, handleInputChange, handleSubmit } = useChat();
+    const { messages, input, handleInputChange, handleSubmit } = useChat({
+        api: "/api/chat",
+    });
 
     return (
         <ExpandableChat size="lg" position="bottom-right">
@@ -36,13 +38,12 @@ export default function ChatSupport() {
                 <ChatMessageList>
                     {messages.map((message, index) => (
                         <ChatBubble key={index} variant={message.role == "user" ? "sent" : "received"}>
-                            <ChatBubbleAvatar src='' fallback={message.role == "user" ? "you" : "ai"}/>
+                            <ChatBubbleAvatar src='' fallback={message.role == "user" ? "you" : "ai"} />
                             <ChatBubbleMessage variant={message.role == "user" ? "sent" : "received"}>
                                 {message.content}
                             </ChatBubbleMessage>
                         </ChatBubble>
                     ))}
-
                 </ChatMessageList>
             </ExpandableChatBody>
             <ExpandableChatFooter>
@@ -59,3 +60,4 @@ export default function ChatSupport() {
         </ExpandableChat>
     );
 }
+
