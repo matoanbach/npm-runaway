@@ -10,7 +10,7 @@ import { BenefitsSection } from "@/components/sections/benefits";
 import { FeaturesSection } from "@/components/sections/features";
 import { ServicesSection } from "@/components/sections/services";
 import { TestimonialSection } from "@/components/sections/testimonial";
-import { TeamSection } from "@/components/sections/team";
+// import { TeamSection } from "@/components/sections/team";
 import { CommunitySection } from "@/components/sections/community";
 import { PricingSection } from "@/components/sections/pricing";
 import { ContactSection } from "@/components/sections/contact";
@@ -55,7 +55,7 @@ export default function HomePage() {
           <FeaturesSection />
           <ServicesSection />
           <TestimonialSection />
-          <TeamSection />
+          {/* <TeamSection /> */}
           <CommunitySection />
           <PricingSection />
           <ContactSection />
