@@ -47,7 +47,7 @@ export const HeroSection = () => {
 
 
             <Button asChild variant="secondary" className="w-5/6 md:w-1/4 font-bold">
-              <Link href="https://github.com/matoanbach/npm-runaway" target="_blank">
+              <Link href="https://github.com/matoanbach/datatrace" target="_blank">
                 View on GitHub
               </Link>
             </Button>

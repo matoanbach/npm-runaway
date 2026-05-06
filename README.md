@@ -1,6 +1,6 @@
-# DeepFood Frontend
+# datatrace
 
-DeepFood Frontend is part of our hackathon project for a Data Analytics + POS SaaS solution. Designed for restaurants, catering services, supermarkets, grocery chains, and food manufacturers, this cloud-based platform integrates with various ERP systems (e.g., SAP, Oracle, Microsoft Dynamics, Odoo) to deliver real-time inventory monitoring, sales analytics, demand forecasting, and more.
+datatrace is part of our hackathon project for a Data Analytics + POS SaaS solution. Designed for restaurants, catering services, supermarkets, grocery chains, and food manufacturers, this cloud-based platform integrates with various ERP systems (e.g., SAP, Oracle, Microsoft Dynamics, Odoo) to deliver real-time inventory monitoring, sales analytics, demand forecasting, and more.
 
 ---
 
@@ -69,7 +69,7 @@ CMD ["npm", "run", "start"]
 
 #### Build the Docker Image
 
-From the project directory, run: `docker build -t toan/deepfood-frontend:0.1 .`
+From the project directory, run: `docker build -t toan/datatrace:0.1 .`
 
 Example output details the steps and final image creation.
 
@@ -121,11 +121,11 @@ aws_secret_access_key = YOUR_GITHUB_SECRET_KEY
 
 For Linux/MacOS: `aws ecr get-login-password --region us-east-2 | docker login --username AWS --password-stdin 160885278762.dkr.ecr.us-east-2.amazonaws.com`
 
-For Windows: `aws ecr list-images --repository-name npm-runaway --region us-east-2`
+For Windows: `aws ecr list-images --repository-name datatrace --region us-east-2`
 
 #### Pull the Image
 
-Download the image with: `docker image pull 160885278762.dkr.ecr.us-east-2.amazonaws.com/npm-runaway:latest`
+Download the image with: `docker image pull 160885278762.dkr.ecr.us-east-2.amazonaws.com/datatrace:latest`
 
 #### Run the Container
 
@@ -191,7 +191,7 @@ jobs:
       - name: Build, tag, and push docker image to Amazon ECR
         env:
           REGISTRY: ${{ steps.login-ecr.outputs.registry }}
-          REPOSITORY: npm-runaway
+          REPOSITORY: datatrace
           IMAGE_TAG: ${{ github.sha }}
         run: |
           docker build -t $REGISTRY/$REPOSITORY:$IMAGE_TAG -t $REGISTRY/$REPOSITORY:latest .

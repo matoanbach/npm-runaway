@@ -1,5 +1,5 @@
 {
-  "name": "shadcn-sidebar",
+  "name": "datatrace",
   "type": "registry:block",
   "registryDependencies": [
     "avatar",

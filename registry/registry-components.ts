@@ -29,7 +29,7 @@ const components = getAllFiles("./src/components")
 
 export const ui: Registry = [
   {
-    name: "shadcn-sidebar",
+    name: "datatrace",
     type: "registry:block",
     registryDependencies: [
       "avatar",
