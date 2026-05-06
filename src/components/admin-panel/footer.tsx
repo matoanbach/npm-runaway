@@ -16,7 +16,7 @@ export function Footer() {
           </Link>
           . The source code is available on{" "}
           <Link
-            href="https://github.com/matoanbach/datatrace"
+            href="https://github.com/matoanbach/npm-runaway"
             target="_blank"
             rel="noopener noreferrer"
             className="font-medium underline underline-offset-4"
