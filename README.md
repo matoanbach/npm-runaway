@@ -1,13 +1,14 @@
 # datatrace (Hackathon Prototype)
 
 Product name: `datatrace`.
-Repo name: `npm-runaway` (GitHub: `https://github.com/matoanbach/npm-runaway`).
+Repository name: `npm-runaway`.
+GitHub repository: [matoanbach/npm-runaway](https://github.com/matoanbach/npm-runaway)
 
 `datatrace` is a hackathon prototype for a Data Analytics + POS SaaS concept for the food industry. It demonstrates how restaurants, grocery chains, and suppliers could use real-time analytics to monitor inventory and sales, reduce waste (especially near-expiry items), and manage supplier compliance.
 
-This README is based on what the code in this repo actually does today (frontend + a few Next.js API routes). It also includes a “target” cloud architecture that adds the backend services that are not present in this repository.
+This README is based on what the code in this repository actually does today: a frontend application plus a small set of Next.js API routes. It also includes a target-state architecture that shows the backend and data services you would normally add to turn this prototype into a full production SaaS platform.
 
-## Who It’s For (Non-Technical)
+## Who It’s For
 
 Organizations:
 - Restaurants, catering services, supermarkets, grocery chains, food distributors, and food manufacturers.
@@ -18,7 +19,7 @@ People:
 - Sustainability teams: track waste reduction outcomes.
 - Supplier managers: validate supplier certifications and documentation.
 
-## What It Does (From The Code)
+## What It Does 
 
 This prototype includes:
 - A marketing/landing page with a company vs supplier “view” concept.
@@ -34,10 +35,10 @@ Notes:
 ## Team
 
 Built during a hackathon with:
-- Jasleen Kaur: https://www.linkedin.com/in/jasleen-k-7a6287253/
-- Kevin Liu: https://www.linkedin.com/in/kliuengineering/
-- Andy Yuchi Zheng: https://www.linkedin.com/in/andy-zh/
-- Karyna Lim: https://www.linkedin.com/in/karynalim/
+- [Jasleen Kaur](https://www.linkedin.com/in/jasleen-k-7a6287253/)
+- [Kevin Liu](https://www.linkedin.com/in/kliuengineering/)
+- [Andy Yuchi Zheng](https://www.linkedin.com/in/andy-zh/)
+- [Karyna Lim](https://www.linkedin.com/in/karynalim/)
 
 ## Tech Stack
 
@@ -53,16 +54,14 @@ Built during a hackathon with:
 
 - Landing page: `src/app/page.tsx`
 - Demo pages (company + supplier): `src/app/(demo)/**`
-- API (Next.js route handlers):
-- AI chat: `src/app/api/chat/route.ts`
-- Send email: `src/app/api/send-email/route.ts`
+- API (Next.js route handlers): `src/app/api/chat/route.ts`, `src/app/api/send-email/route.ts`
 - Mock/demo data: `src/mock/**`
 - Deployment manifests: `eks/*.yaml`
 - CI workflow: `.github/workflows/deploy.yaml`
 
 ## Run Locally
 
-Prereqs:
+Requirements:
 - Node.js: works with Node `22.x` or `23.x` (Dockerfile uses `node:23-alpine`).
 
 Commands:
@@ -109,25 +108,18 @@ docker run --rm -p 3000:3000 \
 
 ### Current (What’s In This Repo)
 
-This repo includes an AWS/EKS deployment setup for the frontend container:
+The current implementation includes an AWS/EKS deployment setup for the frontend container:
 - Docker image built from this repo (`Dockerfile`).
 - GitHub Actions workflow builds and pushes the image to AWS ECR (`.github/workflows/deploy.yaml`).
 - Kubernetes manifests deploy the container to EKS (`eks/deployment.yaml`, `eks/service.yaml`).
 - NGINX Ingress routes traffic (host is currently `datatrace.cloud`) (`eks/ingress.yaml`).
 - cert-manager ClusterIssuer for Let’s Encrypt is provided (`eks/issuer.yaml`).
 
-Mermaid overview:
-```mermaid
-flowchart LR
-  dev[Developer] --> gh[GitHub repo: npm-runaway]
-  gh --> gha[GitHub Actions\n.github/workflows/deploy.yaml]
-  gha --> ecr[AWS ECR\nDocker images]
-  ecr --> eks[EKS Cluster\nDeployment + Service]
-  eks --> ing[NGINX Ingress\nhost: datatrace.cloud]
-  ing --> app[Next.js App\n(port 3000)]
-  app --> openai[OpenAI API\n/api/chat]
-  app --> smtp[Gmail SMTP\n/api/send-email]
-```
+Architecture diagram:
+
+This view separates the runtime request flow from the CI/CD delivery path so it is easier to see how the app is deployed and what external services it depends on.
+
+![Current deployment architecture](screenshots/datatrace-current-deployment.png)
 
 ### Target (Future Backend, Not In This Repo)
 
@@ -137,26 +129,17 @@ For a real POS + analytics SaaS, this UI would typically sit on top of:
 - A database + warehouse (operational DB + analytics store).
 - A forecasting/ML pipeline (demand forecasts, expiry risk scoring).
 
-High-level target architecture:
-```mermaid
-flowchart TB
-  ui[Next.js Frontend\n(this repo)] --> api[Backend API\n(auth + business logic)]
-  api --> db[(Operational DB)]
-  api --> wh[(Analytics Warehouse)]
-  pos[POS Systems] --> ingest[Connectors / Ingestion]
-  erp[ERP Systems] --> ingest
-  suppliers[Suppliers] --> ingest
-  ingest --> wh
-  wh --> ml[Forecasting / ML jobs]
-  ml --> api
-  api --> notif[Notifications\n(email/SMS/webhooks)]
-```
+Architecture diagram:
+
+This target-state view shows the additional backend, ingestion, storage, and forecasting layers that would typically sit behind the frontend in a production system.
+
+![Target architecture](screenshots/datatrace-target-architecture.png)
 
 ## CI/CD (GitHub Actions)
 
-Workflow: `.github/workflows/deploy.yaml`
+Workflow file: `.github/workflows/deploy.yaml`
 - Trigger: pushes + PRs to `main`.
-- Action: builds a Docker image and pushes tags to ECR (`latest` + commit SHA).
+- It builds a Docker image and pushes tags to ECR (`latest` + commit SHA).
 - Deployment step (kubectl apply) is present but commented out.
 
 Secrets referenced by the workflow:
