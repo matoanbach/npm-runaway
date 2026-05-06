@@ -6,8 +6,6 @@ GitHub repository: [matoanbach/npm-runaway](https://github.com/matoanbach/npm-ru
 
 `datatrace` is a hackathon prototype for a Data Analytics + POS SaaS concept for the food industry. It demonstrates how restaurants, grocery chains, and suppliers could use real-time analytics to monitor inventory and sales, reduce waste (especially near-expiry items), and manage supplier compliance.
 
-This README is based on what the code in this repository actually does today: a frontend application plus a small set of Next.js API routes. It also includes a target-state architecture that shows the backend and data services you would normally add to turn this prototype into a full production SaaS platform.
-
 ## Who It’s For
 
 Organizations:
