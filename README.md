@@ -1,203 +1,186 @@
-# datatrace
+# datatrace (Hackathon Prototype)
 
-datatrace is part of our hackathon project for a Data Analytics + POS SaaS solution. Designed for restaurants, catering services, supermarkets, grocery chains, and food manufacturers, this cloud-based platform integrates with various ERP systems (e.g., SAP, Oracle, Microsoft Dynamics, Odoo) to deliver real-time inventory monitoring, sales analytics, demand forecasting, and more.
+Product name: `datatrace`.
+Repo name: `npm-runaway` (GitHub: `https://github.com/matoanbach/npm-runaway`).
 
----
+`datatrace` is a hackathon prototype for a Data Analytics + POS SaaS concept for the food industry. It demonstrates how restaurants, grocery chains, and suppliers could use real-time analytics to monitor inventory and sales, reduce waste (especially near-expiry items), and manage supplier compliance.
 
-## Prerequisites
+This README is based on what the code in this repo actually does today (frontend + a few Next.js API routes). It also includes a “target” cloud architecture that adds the backend services that are not present in this repository.
 
-- `Node.js`: v23.1.0 or v22.x (ensure one of these versions is installed)
-- `Docker`: (if you plan to run the project in a containerized environment)
+## Who It’s For (Non-Technical)
 
----
+Organizations:
+- Restaurants, catering services, supermarkets, grocery chains, food distributors, and food manufacturers.
 
-## Running the Project Locally
+People:
+- Store/restaurant managers: see what is selling and what is about to expire.
+- Purchasing/operations teams: adjust ordering and promotions based on demand signals.
+- Sustainability teams: track waste reduction outcomes.
+- Supplier managers: validate supplier certifications and documentation.
 
-### 1. Clone the Repository
+## What It Does (From The Code)
 
-- For joining an existing project: `git clone [repository_url]`
+This prototype includes:
+- A marketing/landing page with a company vs supplier “view” concept.
+- Company dashboards and analytics pages with charts (sales trends, KPIs, reports).
+- Stock / expiry monitoring screens (demo data) and a “send alert email” flow.
+- Supplier dashboard with certification workflow UI and PDF generation.
+- An in-app AI chat widget backed by an OpenAI-powered `/api/chat` route (currently configured to use model `gpt-4o`).
 
-- For building from scratch using the Shadcn template: `git clone https://github.com/salimi-my/shadcn-ui-sidebar?tab=readme-ov-file`
+Notes:
+- Many screens are demo-driven and pull from JSON files in `src/mock/**`.
+- The “weather” tool in `/api/chat` is a stub (random data) and is just a demo of tool-calling.
 
-### 2. Install Dependencies
+## Team
 
-Navigate to the project directory and run: `npm install`
+Built during a hackathon with:
+- Jasleen Kaur: https://www.linkedin.com/in/jasleen-k-7a6287253/
+- Kevin Liu: https://www.linkedin.com/in/kliuengineering/
+- Andy Yuchi Zheng: https://www.linkedin.com/in/andy-zh/
+- Karyna Lim: https://www.linkedin.com/in/karynalim/
 
-Note: If you encounter multiple warnings or errors, try running: `npm install --force`
+## Tech Stack
 
-### 3. Start the Development Server
+- Next.js 14 (App Router), React 18
+- Tailwind CSS + shadcn/ui (Radix UI)
+- Recharts (dashboards/charts)
+- Zustand (state)
+- Vercel AI SDK (`ai`, `@ai-sdk/react`, `@ai-sdk/openai`) + OpenAI
+- Nodemailer (email sending)
+- pdfme (PDF generation)
 
-Launch the development environment with: `npm run dev`
+## Project Layout
 
-### 4. Build and Run a Production Release
+- Landing page: `src/app/page.tsx`
+- Demo pages (company + supplier): `src/app/(demo)/**`
+- API (Next.js route handlers):
+- AI chat: `src/app/api/chat/route.ts`
+- Send email: `src/app/api/send-email/route.ts`
+- Mock/demo data: `src/mock/**`
+- Deployment manifests: `eks/*.yaml`
+- CI workflow: `.github/workflows/deploy.yaml`
 
-To create a production build: `npm run build`
+## Run Locally
 
-Then start the application: `npm run start`
+Prereqs:
+- Node.js: works with Node `22.x` or `23.x` (Dockerfile uses `node:23-alpine`).
 
----
-
-## Running the Project with Docker
-
-### 1. Dockerize the Project
-
-#### Understanding Docker Concepts
-
-- Image: A template used to create containers.
-- Container: A runtime instance of an image. Multiple containers can be created from a single image.
-
-#### Dockerfile
-
-Here’s an example Dockerfile:
-
-```Dockerfile
-FROM node:23-alpine
-
-WORKDIR /app
-
-COPY package\*.json ./
-RUN npm install
-
-COPY . .
-RUN npm run build
-
-ENV PORT=3000
-EXPOSE 3000
-
-CMD ["npm", "run", "start"]
+Commands:
+```bash
+npm install
+npm run dev
 ```
 
-#### Build the Docker Image
+Then open `http://localhost:3000`.
 
-From the project directory, run: `docker build -t toan/datatrace:0.1 .`
-
-Example output details the steps and final image creation.
-
-#### Verify the Docker Image
-
-List your Docker images with: `docker images`
-
-#### Run the Docker Container
-
-To run the image as a container: `docker run -p 3000:3000 [IMAGE_NAME_OR_ID]`
-
-Replace [IMAGE_NAME_OR_ID] with your image tag or ID (e.g., eda1c746beab).
-
-#### Manage Docker Containers
-
-- List Running Containers: `docker ps`
-
-- List All Containers (including stopped ones): `docker ps -a`
-
-- Remove a Container: `docker rm [CONTAINER_ID]`
-
-- Run in Detached Mode: `docker run -d -p 3000:3000 [IMAGE_NAME_OR_ID]`
-
-- Remove an Image: `docker rmi [IMAGE_ID]`
-
-### 2. Pushing the Docker Image to the Cloud
-
-#### Setting Up Credentials
-
-Ensure you have the necessary AWS ECR credentials. If your repository is pre-configured, your team should provide the secret keys.
-
-### 3. Pulling the Docker Image from the Cloud
-
-#### Configure AWS Credentials
-
-Set up your AWS credentials (typically in the `~/.aws/credentials` file):
-
-```yaml
-[default]
-aws_access_key_id = YOUR_ACCESS_KEY
-aws_secret_access_key = YOUR_SECRET_KEY
-
-[github]
-aws_access_key_id = YOUR_GITHUB_ACCESS_KEY
-aws_secret_access_key = YOUR_GITHUB_SECRET_KEY
+Other useful scripts:
+```bash
+npm run lint
+npm run build
+npm run start
 ```
 
-#### Authenticate with AWS CLI
+## Environment Variables
 
-For Linux/MacOS: `aws ecr get-login-password --region us-east-2 | docker login --username AWS --password-stdin 160885278762.dkr.ecr.us-east-2.amazonaws.com`
+Server-side:
+- `OPENAI_API_KEY` (required to use the AI chat endpoint `/api/chat`).
+- `APP_URL` or `VERCEL_URL` (optional; used to build canonical URLs for metadata in `src/app/layout.tsx`).
+- `PORT` (optional; defaults to 3000).
 
-For Windows: `aws ecr list-images --repository-name datatrace --region us-east-2`
+Email (currently referenced as public env vars in the demo flow):
+- `NEXT_PUBLIC_MAIL_USERNAME`
+- `NEXT_PUBLIC_MAIL_PASSWORD`
+- `NEXT_PUBLIC_MAIL_RECEIVERNAME`
 
-#### Pull the Image
+Email implementation note: the server route `/api/send-email` uses Nodemailer with Gmail SMTP, so you typically need a Gmail app password (not your normal account password).
 
-Download the image with: `docker image pull 160885278762.dkr.ecr.us-east-2.amazonaws.com/datatrace:latest`
+Security note: using `NEXT_PUBLIC_*` for email credentials is not production-safe. See “What To Improve”.
 
-#### Run the Container
-
-Start the container: `docker run -d -p 3000:3000 [IMAGE_NAME_OR_ID]`
-
----
-
-## Continuous Integration with GitHub Actions
-
-### Setting Up Secret Keys
-
-1. Go to your GitHub repository.
-2. Navigate to `Settings` > `Secrets and Variables` > `Actions`.
-3. Add the required keys:
+## Run With Docker (Using The Included Dockerfile)
 
 ```bash
-AWS_ACCESS_KEY=...
-AWS_SECRET_ACCESS_KEY=...
-AWS_ROOT_ACCESS_KEY=...
-AWS_ROOT_SECRET_ACCESS_KEY=...
+docker build -t datatrace:local .
+docker run --rm -p 3000:3000 \
+  -e OPENAI_API_KEY="..." \
+  datatrace:local
 ```
 
-### GitHub Actions Workflow Configuration
+## Cloud Architecture
 
-Create a file at .github/workflows/deploy.yaml with the following content:
+### Current (What’s In This Repo)
 
-name: Deploy to Production
+This repo includes an AWS/EKS deployment setup for the frontend container:
+- Docker image built from this repo (`Dockerfile`).
+- GitHub Actions workflow builds and pushes the image to AWS ECR (`.github/workflows/deploy.yaml`).
+- Kubernetes manifests deploy the container to EKS (`eks/deployment.yaml`, `eks/service.yaml`).
+- NGINX Ingress routes traffic (host is currently `datatrace.cloud`) (`eks/ingress.yaml`).
+- cert-manager ClusterIssuer for Let’s Encrypt is provided (`eks/issuer.yaml`).
 
-```yaml
-name: Deploy to production
-
-on:
-  push:
-    branches: ["main"]
-  pull_request:
-    branches: ["main"]
-
-jobs:
-  test:
-    name: Build image
-    runs-on: ubuntu-latest
-    permissions:
-      id-token: write # ✅ Required for OIDC authentication
-      contents: read # ✅ Allows reading repository content
-
-    steps:
-      # First step
-      - name: Checkout repo
-        uses: actions/checkout@v3
-
-      - name: Configure AWS credentials
-        uses: aws-actions/configure-aws-credentials@v4 # More information on this action can be found below in the 'AWS Credentials' section
-        with:
-          aws-access-key-id: ${{ secrets.AWS_ROOT_ACCESS_KEY }}
-          aws-secret-access-key: ${{ secrets.AWS_ROOT_SECRET_ACCESS_KEY }}
-          aws-region: us-east-2
-
-      # Second step
-      - name: Login to Amazon ECR
-        id: login-ecr
-        uses: aws-actions/amazon-ecr-login@v2
-
-      - name: Build, tag, and push docker image to Amazon ECR
-        env:
-          REGISTRY: ${{ steps.login-ecr.outputs.registry }}
-          REPOSITORY: datatrace
-          IMAGE_TAG: ${{ github.sha }}
-        run: |
-          docker build -t $REGISTRY/$REPOSITORY:$IMAGE_TAG -t $REGISTRY/$REPOSITORY:latest .
-          docker push -a $REGISTRY/$REPOSITORY
+Mermaid overview:
+```mermaid
+flowchart LR
+  dev[Developer] --> gh[GitHub repo: npm-runaway]
+  gh --> gha[GitHub Actions\n.github/workflows/deploy.yaml]
+  gha --> ecr[AWS ECR\nDocker images]
+  ecr --> eks[EKS Cluster\nDeployment + Service]
+  eks --> ing[NGINX Ingress\nhost: datatrace.cloud]
+  ing --> app[Next.js App\n(port 3000)]
+  app --> openai[OpenAI API\n/api/chat]
+  app --> smtp[Gmail SMTP\n/api/send-email]
 ```
 
----
+### Target (Future Backend, Not In This Repo)
 
-For further information or support, please refer to the project documentation or contact the development team.
+For a real POS + analytics SaaS, this UI would typically sit on top of:
+- Ingestion services for POS/ERP (SAP, Oracle, Dynamics, Odoo) and supplier feeds.
+- A backend API (auth, multi-tenant orgs, RBAC, audit logs).
+- A database + warehouse (operational DB + analytics store).
+- A forecasting/ML pipeline (demand forecasts, expiry risk scoring).
+
+High-level target architecture:
+```mermaid
+flowchart TB
+  ui[Next.js Frontend\n(this repo)] --> api[Backend API\n(auth + business logic)]
+  api --> db[(Operational DB)]
+  api --> wh[(Analytics Warehouse)]
+  pos[POS Systems] --> ingest[Connectors / Ingestion]
+  erp[ERP Systems] --> ingest
+  suppliers[Suppliers] --> ingest
+  ingest --> wh
+  wh --> ml[Forecasting / ML jobs]
+  ml --> api
+  api --> notif[Notifications\n(email/SMS/webhooks)]
+```
+
+## CI/CD (GitHub Actions)
+
+Workflow: `.github/workflows/deploy.yaml`
+- Trigger: pushes + PRs to `main`.
+- Action: builds a Docker image and pushes tags to ECR (`latest` + commit SHA).
+- Deployment step (kubectl apply) is present but commented out.
+
+Secrets referenced by the workflow:
+- `AWS_ROOT_ACCESS_KEY`
+- `AWS_ROOT_SECRET_ACCESS_KEY`
+
+## What To Improve
+
+Product:
+- Replace mock/demo JSON data with real backend APIs.
+- Add authentication and role-based access (company vs supplier, multiple orgs).
+- Add exportable reports (PDF/CSV) and audit trails.
+
+Security:
+- Move email credentials to server-only env vars (no `NEXT_PUBLIC_*`).
+- Avoid hardcoding personal emails in cluster issuer config; make it environment-specific.
+- Add rate limiting + input validation for `/api/chat` and `/api/send-email`.
+
+Engineering quality:
+- Add automated tests (unit + integration/e2e).
+- Add `typecheck` in CI.
+- Make CI use AWS OIDC instead of long-lived access keys.
+
+Cloud/ops:
+- Align naming and account IDs between ECR/EKS configs (prototype configs may differ across files).
+- Turn on observability (structured logs, metrics, tracing) and alerting.
+- Document how TLS and DNS are set up for the ingress host.
